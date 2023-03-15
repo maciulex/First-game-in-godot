@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb0i0x7ippwgx"]
+
+[ext_resource type="Script" path="res://building/home.gd" id="1_4fm8j"]
+[ext_resource type="TileSet" uid="uid://d07itdi6qfw3j" path="res://MainTileSet.tres" id="2_q5yvr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pur1a"]
+size = Vector2(13, 16)
+
+[node name="home" type="Node2D"]
+script = ExtResource("1_4fm8j")
+
+[node name="TileMap" type="TileMap" parent="."]
+rotation = -0.00180075
+tile_set = ExtResource("2_q5yvr")
+format = 2
+layer_0/name = "base"
+layer_0/tile_data = PackedInt32Array(0, 0, 1, 65536, 0, 2, 131072, 0, 2, 6, 131072, 1, 5, 65536, 1, 4, 65536, 1, 3, 65536, 1, 2, 65536, 1, 1, 65536, 1, 65542, 131072, 2, 131078, 131072, 2, 196614, 131072, 2, 262150, 131072, 2, 65537, 65536, 2, 196608, 0, 2, 65538, 65536, 2, 65539, 65536, 2, 131075, 65536, 2, 131076, 65536, 2, 131077, 65536, 2, 65541, 65536, 2, 65540, 65536, 2, 131074, 65536, 2, 131073, 65536, 2, 196609, 65536, 2, 196610, 65536, 2, 196611, 65536, 2, 196612, 65536, 2, 196613, 65536, 2, 262149, 65536, 2, 262148, 65536, 3, 262147, 65536, 3, 262146, 65536, 3, 262145, 65536, 2, 327683, 65536, 2, 327680, 0, 3, 262144, 0, 2, 327686, 131072, 3, 327685, 65536, 3, 327684, 65536, 3, 327682, 65536, 3, 327681, 65536, 3)
+layer_1/name = "roof part 1"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array(327683, 196608, 3, 131073, 327680, 2, 131074, 327680, 2, 131075, 327680, 2, 131076, 327680, 2, 131077, 327680, 2, 131078, 393216, 2, 131072, 262144, 2, 65537, 327680, 1, 65538, 327680, 1, 65539, 327680, 1, 3, 327680, 1, 65540, 327680, 1, 65541, 327680, 1, 5, 327680, 1, 4, 327680, 1, 2, 327680, 1, 1, 327680, 1, 196609, 327680, 3, 196610, 327680, 3, 196611, 327680, 3, 196612, 327680, 3, 196613, 327680, 3, 262149, 327680, 3, 262148, 327680, 3, 262147, 327680, 3, 262146, 327680, 3, 262145, 327680, 3, 327686, 393216, 4, 327680, 262144, 4, -65536, 262144, 0, -65530, 393216, 0, -65531, 327680, 0, -65532, 327680, 0, -65533, 327680, 0, -65534, 327680, 0, -65535, 327680, 0, 65536, 262144, 1, 0, 262144, 1, 262144, 262144, 3, 196608, 262144, 3, 262150, 393216, 3, 196614, 393216, 3, 65542, 393216, 1, 6, 393216, 1, 327685, 327680, 4, 327684, 327680, 4, 327682, 327680, 4, 327681, 327680, 4)
+layer_2/name = "chimney"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 2
+layer_2/tile_data = PackedInt32Array(65541, 0, 4)
+script = ExtResource("1_4fm8j")
+
+[node name="House Entrance" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House Entrance"]
+position = Vector2(56, 85)
+shape = SubResource("RectangleShape2D_pur1a")
+
+[connection signal="body_entered" from="House Entrance" to="." method="_on_area_2d_body_entered"]
