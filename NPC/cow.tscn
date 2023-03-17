@@ -89,7 +89,7 @@ graph_offset = Vector2(-103, 52)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvd3d"]
 size = Vector2(25, 16)
 
-[node name="cow" type="CharacterBody2D" groups=["Enemys"]]
+[node name="cow" type="CharacterBody2D" groups=["Enemys", "alive", "tool_axe_action"]]
 position = Vector2(126, 51)
 script = ExtResource("1_qwkr4")
 
@@ -97,7 +97,6 @@ script = ExtResource("1_qwkr4")
 texture = ExtResource("1_qr5e4")
 hframes = 3
 vframes = 2
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

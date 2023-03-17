@@ -583,17 +583,19 @@ animation = &"UseAxeRight"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_24efs"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_v60ry")
-blend_point_0/pos = Vector2(0, 0.9)
+blend_point_0/pos = Vector2(0, 1)
 blend_point_1/node = SubResource("AnimationNodeAnimation_bhtwe")
-blend_point_1/pos = Vector2(-1, -0.1)
+blend_point_1/pos = Vector2(-0.9, 0)
 blend_point_2/node = SubResource("AnimationNodeAnimation_iac7u")
-blend_point_2/pos = Vector2(0, -0.9)
+blend_point_2/pos = Vector2(0, -1)
 blend_point_3/node = SubResource("AnimationNodeAnimation_mnn8w")
-blend_point_3/pos = Vector2(1, 0)
+blend_point_3/pos = Vector2(0.8, 0)
+min_space = Vector2(-1.2, -1.2)
+max_space = Vector2(1.2, 1.2)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6lhur"]
-graph_offset = Vector2(99.6255, -58.3071)
+graph_offset = Vector2(80.6255, 11.6929)
 nodes/UseAxe/node = SubResource("AnimationNodeBlendSpace2D_24efs")
 nodes/UseAxe/position = Vector2(520, 20)
 nodes/output/position = Vector2(860, 80)
@@ -625,8 +627,8 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_wq4xp")
 blend_point_3/pos = Vector2(1.1, 0)
 blend_point_4/node = SubResource("AnimationNodeAnimation_kfk7n")
 blend_point_4/pos = Vector2(0, 0)
-min_space = Vector2(-1.1, -1.1)
-max_space = Vector2(1.1, 1.1)
+min_space = Vector2(-1.2, -1.2)
+max_space = Vector2(1.2, 1.2)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f0ayc"]
@@ -688,13 +690,13 @@ advance_condition = &"isIdle"
 states/End/position = Vector2(891, 128)
 states/Start/position = Vector2(200, 62)
 states/UseTool/node = SubResource("AnimationNodeBlendTree_6lhur")
-states/UseTool/position = Vector2(566, 332)
+states/UseTool/position = Vector2(571, 205)
 states/idle/node = SubResource("AnimationNodeBlendSpace2D_wvre4")
 states/idle/position = Vector2(445, 91)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_t1r2u")
 states/walk/position = Vector2(734, 99)
 transitions = ["UseTool", "walk", SubResource("AnimationNodeStateMachineTransition_6bv2q"), "walk", "UseTool", SubResource("AnimationNodeStateMachineTransition_f40ye"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_otp7a"), "UseTool", "idle", SubResource("AnimationNodeStateMachineTransition_khtxx"), "idle", "UseTool", SubResource("AnimationNodeStateMachineTransition_2wej7"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_t3kp7"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_1sild")]
-graph_offset = Vector2(-79, 60)
+graph_offset = Vector2(-141, 32)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_rq3d2"]
 

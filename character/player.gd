@@ -5,6 +5,14 @@ extends CharacterBody2D
 @export var toolCoolDownTime : float = 1;
 @onready var animation_tree = $AnimationTree;
 var KnockbackRays : Array;
+
+#best to change futher
+const KnockbackRaysOppositVectors : Array = [
+	[Vector2(2,2),Vector2(1,2),Vector2(0,2)],
+	[Vector2(2,1),null,Vector2(0,1)],
+	[Vector2(2,0),Vector2(1,0),Vector2(0,0)],
+	
+];
 signal building;
 signal health;
 var playerData;
@@ -14,14 +22,14 @@ func _ready():
 	self.health.connect($Control/HPValLabel.updateHp);
 	KnockbackRays = [
 		[
-			$RayCastsContainer/RayCast2D1,#bottom-middle					
-			$RayCastsContainer/RayCast2D2,#bottom-left
-			$RayCastsContainer/RayCast2D8#right-bottom
+			$RayCastsContainer/RayCast2D2,	#bottom-left
+			$RayCastsContainer/RayCast2D1,	#bottom-middle					
+			$RayCastsContainer/RayCast2D8	#bottom-right
 		],
 		[
-			$RayCastsContainer/RayCast2D7,#right-middle
+			$RayCastsContainer/RayCast2D3,	#left-middle,
 			null,
-			$RayCastsContainer/RayCast2D3#left-middle
+			$RayCastsContainer/RayCast2D7	#right-middle
 		],
 		[
 			$RayCastsContainer/RayCast2D4,#left-top
@@ -42,7 +50,7 @@ func _physics_process(delta):
 	if (toolUse && !playerData.toolCoolDown):
 		$Timer.start(toolCoolDownTime);
 		playerData.toolCoolDown = true;
-		useTool(input_direction);
+		useTool();
 	else:
 		velocity = input_direction * movement_speed;
 		update_animation("movement",input_direction)
@@ -86,23 +94,19 @@ func _on_area_2d_area_entered(area):
 	pass # Replace with function body.
 
 func getColliderFromVector(vector : Vector2):
-	var index = 0;
-	match vector.x:
-		1, -1:
-			pass;
-	pass;
+	print(vector);
 	
 
 func blockPlayerMovement():
 	playerData.movementBlock = true;
 	update_animation("movement", Vector2.ZERO);
 
-func useTool(lookingAt: Vector2):
+func useTool():
 	blockPlayerMovement();
-	update_animation("toolUse", lookingAt);
+	update_animation("toolUse", Vector2.ZERO);
 	match playerData.equipedTool:
 		playerData.tools.Axe:
-			
+			getColliderFromVector(playerData.lookingDirection);
 			pass;
 
 func getVectorOfColidedBody(body):
@@ -119,17 +123,23 @@ func getFirstEmptyKnockBackRay():
 		for x in range(3):
 			if (KnockbackRays[y][x] != null && KnockbackRays[y][x].get_collider() == null):
 				return Vector2(x,y)
+				
+				
+	return null;
+
 
 func _on_character_collision_body_entered(body):
 	if (body.is_in_group("Enemys")):
-		var collBody = getVectorOfColidedBody(body)
-		print(collBody);
-		collBody.x = (collBody.x-1);		
-		collBody.y = (collBody.y-1);		
-		if (KnockbackRays[collBody.y][collBody.x].get_collider() != null):
+		var collBody = getVectorOfColidedBody(body);
+		collBody = KnockbackRaysOppositVectors[collBody.y][collBody.x];
+		
+		if (collBody == null || KnockbackRays[collBody.y][collBody.x].get_collider() != null):
 			getFirstEmptyKnockBackRay();
-		print(collBody);
 			
+		collBody.x -= 1;
+		collBody.y -= 1;
+		collBody.y *= -1
+		
 		velocity = collBody * knotbackStrength;
 		move_and_slide();
 		playerData.health -= 10;
