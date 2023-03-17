@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @export var movement_speed : float = 100;
-@export var knotbackStrength: float = 400;
-@export var toolCoolDownTime : float = 1.5;
+@export var knotbackStrength: float = 600;
+@export var toolCoolDownTime : float = 1;
 @onready var animation_tree = $AnimationTree;
 var KnockbackRays : Array;
 signal building;
@@ -13,14 +13,21 @@ func _ready():
 	playerData = get_node("/root/PlayerData");
 	self.health.connect($Control/HPValLabel.updateHp);
 	KnockbackRays = [
-		$RayCastsContainer/RayCast2D1,#bottom-middle					
-		$RayCastsContainer/RayCast2D2,#next going clockwise by 45 deg
-		$RayCastsContainer/RayCast2D3,#left
-		$RayCastsContainer/RayCast2D4,
-		$RayCastsContainer/RayCast2D5,#top
-		$RayCastsContainer/RayCast2D6,
-		$RayCastsContainer/RayCast2D7,#right
-		$RayCastsContainer/RayCast2D8
+		[
+			$RayCastsContainer/RayCast2D1,#bottom-middle					
+			$RayCastsContainer/RayCast2D2,#bottom-left
+			$RayCastsContainer/RayCast2D8#right-bottom
+		],
+		[
+			$RayCastsContainer/RayCast2D7,#right-middle
+			null,
+			$RayCastsContainer/RayCast2D3#left-middle
+		],
+		[
+			$RayCastsContainer/RayCast2D4,#left-top
+			$RayCastsContainer/RayCast2D5,#top-middle
+			$RayCastsContainer/RayCast2D6#top-right
+		]
 	];
 	
 func _physics_process(delta):
@@ -54,7 +61,7 @@ func animationForWalkOrIdle(move_input : Vector2):
 		animation_tree.set("parameters/conditions/IsMoving", false);		
 		animation_tree.set("parameters/conditions/isIdle", true);
 
-func animationForTools(vector : Vector2):
+func animationForTools():
 	animation_tree.set("parameters/conditions/IsMoving", false);
 	animation_tree.set("parameters/conditions/isIdle", false);
 	animation_tree.set("parameters/conditions/useTool", true);
@@ -67,7 +74,7 @@ func update_animation(actionType : String, vector : Vector2):
 		"movement":
 			animationForWalkOrIdle(vector);
 		"toolUse":
-			animationForTools(vector);
+			animationForTools();
 
 func _on_area_2d_area_entered(area):
 	match area.name:
@@ -78,46 +85,52 @@ func _on_area_2d_area_entered(area):
 			building.emit("exit");
 	pass # Replace with function body.
 
-func getOpposingColidingVector():
-	var object = null;
-	for i in 8:
-		if (object == null && KnockbackRays[i].get_collider() == null):		
-			object = i;
-		elif KnockbackRays[i].get_collider() != null && KnockbackRays[(i+4)%8].get_collider() == null:
-			return (i+4)%8;
+func getColliderFromVector(vector : Vector2):
+	var index = 0;
+	match vector.x:
+		1, -1:
 			pass;
-	return object;
+	pass;
+	
 
 func blockPlayerMovement():
 	playerData.movementBlock = true;
 	update_animation("movement", Vector2.ZERO);
 
 func useTool(lookingAt: Vector2):
-	if (lookingAt == Vector2.ZERO): lookingAt = Vector2(0,1);
 	blockPlayerMovement();
 	update_animation("toolUse", lookingAt);
 	match playerData.equipedTool:
 		playerData.tools.Axe:
+			
 			pass;
-	pass;
 
-	
+func getVectorOfColidedBody(body):
+	var coll = null;
+	for y in range(3):
+		for x in range(3):
+			if (KnockbackRays[y][x] != null && KnockbackRays[y][x].get_collider() == body):
+				coll = 	Vector2(x,y);
+				if (y==1): return coll;
+	return coll;
+
+func getFirstEmptyKnockBackRay():
+	for y in range(3):
+		for x in range(3):
+			if (KnockbackRays[y][x] != null && KnockbackRays[y][x].get_collider() == null):
+				return Vector2(x,y)
 
 func _on_character_collision_body_entered(body):
 	if (body.is_in_group("Enemys")):
-		var knotbackDir = getOpposingColidingVector();
-		var knotbackVector = Vector2(0,0);
-		match knotbackDir:
-			0,1,7: 
-				knotbackVector.y += 4;
-			3,4,5:
-				knotbackVector.y -= 4;
-		match knotbackDir:
-			1,2,3: 
-				knotbackVector.x -= 4;
-			5,6,7:
-				knotbackVector.x += 4;
-		velocity = knotbackVector * knotbackStrength;
+		var collBody = getVectorOfColidedBody(body)
+		print(collBody);
+		collBody.x = (collBody.x-1);		
+		collBody.y = (collBody.y-1);		
+		if (KnockbackRays[collBody.y][collBody.x].get_collider() != null):
+			getFirstEmptyKnockBackRay();
+		print(collBody);
+			
+		velocity = collBody * knotbackStrength;
 		move_and_slide();
 		playerData.health -= 10;
 		health.emit(playerData.health);

@@ -760,7 +760,6 @@ remote_path = NodePath("Camera2D")
 zoom = Vector2(4, 4)
 
 [node name="CharacterCollision" type="Area2D" parent="."]
-visible = false
 position = Vector2(1, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterCollision"]
@@ -769,31 +768,30 @@ shape = SubResource("RectangleShape2D_6h05r")
 debug_color = Color(0.901961, 0, 0.756863, 0.419608)
 
 [node name="RayCastsContainer" type="Node2D" parent="."]
-visible = false
 
 [node name="RayCast2D1" type="RayCast2D" parent="RayCastsContainer"]
-target_position = Vector2(0, 18)
+target_position = Vector2(0, 16)
 
 [node name="RayCast2D2" type="RayCast2D" parent="RayCastsContainer"]
-target_position = Vector2(-13, 16)
+target_position = Vector2(-11, 12)
 
 [node name="RayCast2D3" type="RayCast2D" parent="RayCastsContainer"]
-target_position = Vector2(-20, 0)
+target_position = Vector2(-14, 0)
 
 [node name="RayCast2D4" type="RayCast2D" parent="RayCastsContainer"]
-target_position = Vector2(-14, -15)
+target_position = Vector2(-11, -11)
 
 [node name="RayCast2D5" type="RayCast2D" parent="RayCastsContainer"]
-target_position = Vector2(0, -19)
+target_position = Vector2(0, -16)
 
 [node name="RayCast2D6" type="RayCast2D" parent="RayCastsContainer"]
-target_position = Vector2(12, -14)
+target_position = Vector2(13, -12)
 
 [node name="RayCast2D7" type="RayCast2D" parent="RayCastsContainer"]
-target_position = Vector2(16, 0)
+target_position = Vector2(15, 0)
 
 [node name="RayCast2D8" type="RayCast2D" parent="RayCastsContainer"]
-target_position = Vector2(13, 13)
+target_position = Vector2(11, 11)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
