@@ -769,4 +769,4 @@ position = Vector2(278, 37)
 position = Vector2(186, 157)
 
 [node name="home" parent="." instance=ExtResource("9_byatf")]
-position = Vector2(509, 264)
+position = Vector2(425, 174)
