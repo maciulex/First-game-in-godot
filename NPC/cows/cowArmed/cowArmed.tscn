@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1hkcomwcy5ra"]
+
+[ext_resource type="PackedScene" uid="uid://dpddi8nvsbcy3" path="res://NPC/cows/cow/cow.tscn" id="1_0d10r"]
+[ext_resource type="Script" path="res://NPC/cows/cowArmed/cowArmed.gd" id="2_mcfsc"]
+[ext_resource type="Texture2D" uid="uid://vw6eq58q2owa" path="res://art/turret.png" id="3_rd04r"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_iybn2"]
+
+[node name="cowArmed" instance=ExtResource("1_0d10r")]
+script = ExtResource("2_mcfsc")
+timeToChangeTuretState = [2, 5]
+turretRotationTime = 0.1
+
+[node name="AnimationTree" parent="." index="2"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_iybn2")
+
+[node name="Turret" type="Sprite2D" parent="." index="6"]
+scale = Vector2(0.26087, 0.30303)
+texture = ExtResource("3_rd04r")
+hframes = 8
+vframes = 8
+
+[node name="turretDetection" type="RayCast2D" parent="Turret" index="0"]
+position = Vector2(3.83331, 6.59999)
+scale = Vector2(3.83333, 3.3)
+target_position = Vector2(1, -93)
+collision_mask = 2
+
+[node name="Line2D" type="Line2D" parent="Turret/turretDetection" index="0"]
+position = Vector2(6.10352e-05, 1.90735e-06)
+scale = Vector2(-0.199641, 1.0233)
+points = PackedVector2Array(0, -1, -5.00873, -88.9281)
+
+[node name="TimerForTurretRotation" type="Timer" parent="." index="7"]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="TimerForTurretRotation" to="." method="_on_timer_for_turret_rotation_timeout"]

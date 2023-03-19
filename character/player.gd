@@ -15,11 +15,12 @@ const KnockbackRaysOppositVectors : Array = [
 ];
 signal building;
 signal health;
+signal toolAction;
 var playerData;
 
 func _ready():
-	playerData = get_node("/root/PlayerData");
 	self.health.connect($Control/HPValLabel.updateHp);
+	playerData = get_node("/root/PlayerData");
 	KnockbackRays = [
 		[
 			$RayCastsContainer/RayCast2D2,	#bottom-left
@@ -94,7 +95,17 @@ func _on_area_2d_area_entered(area):
 	pass # Replace with function body.
 
 func getColliderFromVector(vector : Vector2):
-	print(vector);
+	match int(vector.y):
+		-1:
+			return KnockbackRays[2][1].get_collider();
+		1:
+			return KnockbackRays[0][1].get_collider();
+	match int(vector.x):
+		1: 
+			return KnockbackRays[1][2].get_collider();
+		-1:
+			return KnockbackRays[1][0].get_collider();
+	return null;
 	
 
 func blockPlayerMovement():
@@ -106,7 +117,11 @@ func useTool():
 	update_animation("toolUse", Vector2.ZERO);
 	match playerData.equipedTool:
 		playerData.tools.Axe:
-			getColliderFromVector(playerData.lookingDirection);
+			var collider =getColliderFromVector(playerData.lookingDirection);
+			if (collider != null && collider.is_in_group("tool_axe_action_group")):
+				print("dah")
+				get_tree().call_group("tool_axe_action_group", "_on_player_tool_action",collider)
+				pass;
 			pass;
 
 func getVectorOfColidedBody(body):
@@ -148,7 +163,6 @@ func _on_character_collision_body_entered(body):
 
 
 func _on_animation_tree_animation_finished(anim_name):
-	print("1 ",anim_name);
 	if (anim_name.contains("Use")):
 		animation_tree.set("parameters/conditions/isIdle", true);
 		animation_tree.set("parameters/conditions/useTool", false);

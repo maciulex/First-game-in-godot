@@ -14,6 +14,7 @@ func _ready():
 	setAnimation(true, true);
 	
 
+
 func _physics_process(delta):
 	if (COW_STATE == COW_STATES.walk):
 		move_and_collide(WalkDir)
@@ -53,3 +54,9 @@ func setNewState():
 
 func _on_timer_timeout():
 	setNewState();
+
+
+func _on_player_tool_action(target):
+	print(target, target == self);
+	if target == self:
+		self.queue_free();

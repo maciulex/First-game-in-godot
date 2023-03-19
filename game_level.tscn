@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://gcoewp6x8xno"]
+[gd_scene load_steps=19 format=3 uid="uid://cdrrb3nt2gd6v"]
 
 [ext_resource type="PackedScene" uid="uid://rsl43nlh0qrc" path="res://character/player.tscn" id="1_8ombt"]
 [ext_resource type="Script" path="res://game_level.gd" id="1_15jui"]
@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dymikuspy5yh3" path="res://art/Sprout Lands - Sprites - Basic pack/Tilesets/Fences.png" id="5_mmt5p"]
 [ext_resource type="Texture2D" uid="uid://dckvrdmeoibfr" path="res://art/Sprout Lands - Sprites - Basic pack/Tilesets/Water.png" id="6_okfou"]
 [ext_resource type="Texture2D" uid="uid://175ari00wbp2" path="res://art/Sprout Lands - Sprites - Basic pack/Tilesets/Wooden House.png" id="7_4b1h7"]
-[ext_resource type="PackedScene" uid="uid://cqherbldtllj4" path="res://NPC/cow.tscn" id="8_1wffd"]
+[ext_resource type="PackedScene" uid="uid://dpddi8nvsbcy3" path="res://NPC/cows/cow/cow.tscn" id="8_1wffd"]
 [ext_resource type="PackedScene" uid="uid://bb0i0x7ippwgx" path="res://building/home.tscn" id="9_byatf"]
+[ext_resource type="PackedScene" uid="uid://c1hkcomwcy5ra" path="res://NPC/cows/cowArmed/cowArmed.tscn" id="11_n7n0e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7y6o0"]
 texture = ExtResource("2_f5xm6")
@@ -747,26 +748,31 @@ layer_1/z_index = -2
 layer_1/tile_data = PackedInt32Array(524294, 131073, 2, 524295, 131073, 2, 524296, 131073, 2, 524297, 131073, 2, 524298, 131073, 2, 524299, 131073, 2, 524300, 131073, 2, 524301, 131073, 2, 524302, 131073, 2, 524303, 131073, 2, 524304, 131073, 2, 524305, 131073, 2, 524306, 131073, 2, 524307, 131073, 2, 524308, 196609, 2, 524293, 65537, 2, 5, 65537, 1, 65541, 65537, 1, 131077, 65537, 1, 196613, 65537, 1, 262149, 65537, 1, 327685, 65537, 1, 393221, 65537, 1, 458757, 65537, 1, 20, 131073, 1, 65556, 131073, 1, 131092, 131073, 1, 196628, 131073, 1, 262164, 327681, 2, 327700, 196609, 1, 393236, 196609, 1, 458772, 196609, 1, 21, 131073, 1, 65557, 131073, 1, 131093, 131073, 1, 22, 131073, 1, 65558, 131073, 1, 131094, 131073, 1, 196629, 131073, 1, 262165, 262145, 4, 327701, 262145, 5, 196630, 131073, 1, 262166, 327681, 4, 327702, 327681, 5, 23, 196609, 1, 65559, 196609, 1, 131095, 196609, 1, 196631, 196609, 1, 262167, 196609, 2, 6, 131073, 1, 65542, 131073, 1, 131078, 131073, 1, 196614, 131073, 1, 262150, 131073, 1, 327686, 131073, 1, 393222, 131073, 1, 458758, 131073, 1, 7, 131073, 1, 65543, 131073, 1, 131079, 131073, 1, 196615, 131073, 1, 262151, 131073, 1, 327687, 131073, 1, 393223, 131073, 1, 458759, 131073, 1, 8, 131073, 1, 65544, 131073, 1, 131080, 131073, 1, 196616, 131073, 1, 262152, 131073, 1, 327688, 131073, 1, 393224, 131073, 1, 458760, 131073, 1, 9, 131073, 1, 65545, 131073, 1, 131081, 131073, 1, 196617, 131073, 1, 262153, 131073, 1, 327689, 131073, 1, 393225, 131073, 1, 458761, 131073, 1, 10, 131073, 1, 65546, 131073, 1, 131082, 131073, 1, 196618, 131073, 1, 262154, 131073, 1, 327690, 131073, 1, 393226, 131073, 1, 458762, 131073, 1, 11, 131073, 1, 65547, 131073, 1, 131083, 131073, 1, 196619, 131073, 1, 262155, 131073, 1, 327691, 131073, 1, 393227, 131073, 1, 458763, 131073, 1, 12, 131073, 1, 65548, 131073, 1, 131084, 131073, 1, 196620, 131073, 1, 262156, 131073, 1, 327692, 131073, 1, 393228, 131073, 1, 458764, 131073, 1, 13, 131073, 1, 65549, 131073, 1, 131085, 131073, 1, 196621, 131073, 1, 262157, 131073, 1, 327693, 131073, 1, 393229, 131073, 1, 458765, 131073, 1, 14, 131073, 1, 65550, 131073, 1, 131086, 131073, 1, 196622, 131073, 1, 262158, 131073, 1, 327694, 131073, 1, 393230, 131073, 1, 458766, 131073, 1, 15, 131073, 1, 65551, 131073, 1, 131087, 131073, 1, 196623, 131073, 1, 262159, 131073, 1, 327695, 131073, 1, 393231, 131073, 1, 458767, 131073, 1, 16, 131073, 1, 65552, 131073, 1, 131088, 131073, 1, 196624, 131073, 1, 262160, 131073, 1, 327696, 131073, 1, 393232, 131073, 1, 458768, 131073, 1, 17, 131073, 1, 65553, 131073, 1, 131089, 131073, 1, 196625, 131073, 1, 262161, 131073, 1, 327697, 131073, 1, 393233, 131073, 1, 458769, 131073, 1, 18, 131073, 1, 65554, 131073, 1, 131090, 131073, 1, 196626, 131073, 1, 262162, 131073, 1, 327698, 131073, 1, 393234, 131073, 1, 458770, 131073, 1, 19, 131073, 1, 65555, 131073, 1, 131091, 131073, 1, 196627, 131073, 1, 262163, 131073, 1, 327699, 131073, 1, 393235, 131073, 1, 458771, 131073, 1)
 metadata/_edit_lock_ = true
 
-[node name="cow" parent="." instance=ExtResource("8_1wffd")]
-position = Vector2(215, 230)
-
-[node name="cow2" parent="." instance=ExtResource("8_1wffd")]
-position = Vector2(126, 62)
-
-[node name="cow7" parent="." instance=ExtResource("8_1wffd")]
-position = Vector2(109, 88)
-
-[node name="cow6" parent="." instance=ExtResource("8_1wffd")]
-position = Vector2(133, 107)
-
-[node name="cow5" parent="." instance=ExtResource("8_1wffd")]
-position = Vector2(106, 111)
-
-[node name="cow3" parent="." instance=ExtResource("8_1wffd")]
-position = Vector2(278, 37)
-
-[node name="cow4" parent="." instance=ExtResource("8_1wffd")]
-position = Vector2(186, 157)
-
 [node name="home" parent="." instance=ExtResource("9_byatf")]
 position = Vector2(425, 174)
+
+[node name="Cows" type="Node2D" parent="."]
+
+[node name="cow2" parent="Cows" instance=ExtResource("8_1wffd")]
+position = Vector2(126, 62)
+
+[node name="cow7" parent="Cows" instance=ExtResource("8_1wffd")]
+position = Vector2(109, 88)
+
+[node name="cow6" parent="Cows" instance=ExtResource("8_1wffd")]
+position = Vector2(133, 107)
+
+[node name="cow5" parent="Cows" instance=ExtResource("8_1wffd")]
+position = Vector2(106, 111)
+
+[node name="cow3" parent="Cows" instance=ExtResource("8_1wffd")]
+position = Vector2(278, 37)
+
+[node name="cow4" parent="Cows" instance=ExtResource("8_1wffd")]
+position = Vector2(186, 157)
+
+[node name="cow" parent="Cows" instance=ExtResource("8_1wffd")]
+position = Vector2(215, 230)
+
+[node name="cowArmed" parent="." instance=ExtResource("11_n7n0e")]
+position = Vector2(354, 293)

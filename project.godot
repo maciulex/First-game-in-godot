@@ -54,6 +54,10 @@ space={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_2="Wykrywanie gracza"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
