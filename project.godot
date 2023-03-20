@@ -57,6 +57,7 @@ space={
 [layer_names]
 
 2d_physics/layer_2="Wykrywanie gracza"
+2d_physics/layer_3="Wykrywanie żywych"
 
 [rendering]
 

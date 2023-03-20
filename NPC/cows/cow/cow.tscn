@@ -62,7 +62,6 @@ func _on_timer_timeout():
 
 
 func _on_player_tool_action(target):
-	print(target, target == self);
 	if target == self:
 		self.queue_free();
 "
@@ -154,7 +153,6 @@ graph_offset = Vector2(-103, 52)
 size = Vector2(25, 16)
 
 [node name="cow" type="CharacterBody2D" groups=["Enemys", "alive", "tool_axe_action_group"]]
-position = Vector2(126, 51)
 script = SubResource("GDScript_t15gv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

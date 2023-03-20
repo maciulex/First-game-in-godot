@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7pwup0ub45j2"]
+[gd_scene load_steps=3 format=3 uid="uid://b7pwup0ub45j2"]
 
 [ext_resource type="Texture2D" uid="uid://dkeb0esyj1uyb" path="res://art/bullet.png" id="1_a14ki"]
+[ext_resource type="Script" path="res://utils/bullet.gd" id="1_yvkmu"]
 
-[node name="bullet" type="Node2D"]
+[node name="bullet" type="CharacterBody2D"]
+script = ExtResource("1_yvkmu")
 
 [node name="Bullet" type="Sprite2D" parent="."]
 position = Vector2(0, 1.19209e-07)

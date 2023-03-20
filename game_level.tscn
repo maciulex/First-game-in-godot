@@ -776,3 +776,6 @@ position = Vector2(215, 230)
 
 [node name="cowArmed" parent="." instance=ExtResource("11_n7n0e")]
 position = Vector2(354, 293)
+
+[node name="cowArmed2" parent="." instance=ExtResource("11_n7n0e")]
+position = Vector2(444, 405)

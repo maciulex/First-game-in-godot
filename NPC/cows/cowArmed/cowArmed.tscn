@@ -8,7 +8,6 @@
 
 [node name="cowArmed" instance=ExtResource("1_0d10r")]
 script = ExtResource("2_mcfsc")
-timeToChangeTuretState = [2, 5]
 turretRotationTime = 0.1
 
 [node name="AnimationTree" parent="." index="2"]
@@ -27,6 +26,7 @@ target_position = Vector2(1, -93)
 collision_mask = 2
 
 [node name="Line2D" type="Line2D" parent="Turret/turretDetection" index="0"]
+visible = false
 position = Vector2(6.10352e-05, 1.90735e-06)
 scale = Vector2(-0.199641, 1.0233)
 points = PackedVector2Array(0, -1, -5.00873, -88.9281)
@@ -35,4 +35,9 @@ points = PackedVector2Array(0, -1, -5.00873, -88.9281)
 wait_time = 0.3
 autostart = true
 
+[node name="TimerToCycleOfRotation" type="Timer" parent="." index="8"]
+wait_time = 0.1
+autostart = true
+
 [connection signal="timeout" from="TimerForTurretRotation" to="." method="_on_timer_for_turret_rotation_timeout"]
+[connection signal="timeout" from="TimerToCycleOfRotation" to="." method="_on_timer_to_cycle_of_rotation_timeout"]

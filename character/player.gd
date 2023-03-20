@@ -119,7 +119,6 @@ func useTool():
 		playerData.tools.Axe:
 			var collider =getColliderFromVector(playerData.lookingDirection);
 			if (collider != null && collider.is_in_group("tool_axe_action_group")):
-				print("dah")
 				get_tree().call_group("tool_axe_action_group", "_on_player_tool_action",collider)
 				pass;
 			pass;
