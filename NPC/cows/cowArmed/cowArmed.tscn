@@ -20,15 +20,14 @@ hframes = 8
 vframes = 8
 
 [node name="turretDetection" type="RayCast2D" parent="Turret" index="0"]
-position = Vector2(3.83331, 6.59999)
 scale = Vector2(3.83333, 3.3)
-target_position = Vector2(1, -93)
+target_position = Vector2(1, -140)
 collision_mask = 2
 
 [node name="Line2D" type="Line2D" parent="Turret/turretDetection" index="0"]
 visible = false
-position = Vector2(6.10352e-05, 1.90735e-06)
-scale = Vector2(-0.199641, 1.0233)
+position = Vector2(6.10352e-05, -4.14633)
+scale = Vector2(-0.199641, 1.484)
 points = PackedVector2Array(0, -1, -5.00873, -88.9281)
 
 [node name="TimerForTurretRotation" type="Timer" parent="." index="7"]
@@ -39,5 +38,11 @@ autostart = true
 wait_time = 0.1
 autostart = true
 
+[node name="aimbot" type="Timer" parent="." index="9"]
+
+[node name="bulletCoolDown" type="Timer" parent="." index="10"]
+
 [connection signal="timeout" from="TimerForTurretRotation" to="." method="_on_timer_for_turret_rotation_timeout"]
 [connection signal="timeout" from="TimerToCycleOfRotation" to="." method="_on_timer_to_cycle_of_rotation_timeout"]
+[connection signal="timeout" from="aimbot" to="." method="_on_aimbot_timeout"]
+[connection signal="timeout" from="bulletCoolDown" to="." method="_on_bullet_cool_down_timeout"]

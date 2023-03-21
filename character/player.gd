@@ -92,6 +92,8 @@ func _on_area_2d_area_entered(area):
 			#print("emitted")
 		"HouseExit":
 			building.emit("exit");
+		"bullet":
+			takeDamage(10);
 	pass # Replace with function body.
 
 func getColliderFromVector(vector : Vector2):
@@ -142,6 +144,10 @@ func getFirstEmptyKnockBackRay():
 	return null;
 
 
+func takeDamage(damage:int):
+	playerData.health -= damage;
+	health.emit(playerData.health);
+
 func _on_character_collision_body_entered(body):
 	if (body.is_in_group("Enemys")):
 		var collBody = getVectorOfColidedBody(body);
@@ -156,10 +162,10 @@ func _on_character_collision_body_entered(body):
 		
 		velocity = collBody * knotbackStrength;
 		move_and_slide();
-		playerData.health -= 10;
-		health.emit(playerData.health);
-	pass # Replace with function body.
+		takeDamage(10);
 
+	pass # Replace with function body.\
+	
 
 func _on_animation_tree_animation_finished(anim_name):
 	if (anim_name.contains("Use")):
