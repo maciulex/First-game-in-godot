@@ -16,11 +16,15 @@ var aimbotActiveTime : float = 5;
 var aimbotCooldownTime : float = 2;
 var aimbotActive : bool = false;
 var aimbotCooldown : bool = false;
+var health = 30;
 
 @onready var turretCoolDownTimer : Timer = $bulletCoolDown;
 @onready var turretTimer : Timer = $TimerForTurretRotation;
 var turretCoolDown : bool = false;
 var turretCoolDownTime : float = 0.2;
+
+func die():
+	queue_free();
 
 func shootBullet():
 	var instanceOfBullet = bullet.instantiate();
@@ -70,7 +74,7 @@ func _physics_process(delta):
 			turretAimbotTimer.start(aimbotActiveTime);
 		shootBullet();
 		pass;
-
+	
 
 func _on_timer_for_turret_rotation_timeout():
 	turretTimer.start(randi_range(timeToChangeTuretState[0], timeToChangeTuretState[1]));
@@ -93,4 +97,12 @@ func _on_aimbot_timeout():
 		turretAimbotTimer.start(aimbotCooldownTime);
 	else:
 		aimbotCooldown = false;
+	pass # Replace with function body.
+
+func _on_cow_area_entered(area):
+	print(area.get_parent().name)
+	if (area.name == "bullet" && (area.get_parent().shooter != $cow.get_rid())):
+		health -= 10;
+		if (health == 0):
+			die();
 	pass # Replace with function body.

@@ -28,3 +28,12 @@ func _on_area_2d_body_entered(body):
 	if (body.name == "TileMap"):
 		queue_free();
 	pass # Replace with function body.
+
+
+func _on_self_destruction_timeout():
+	queue_free();
+	pass # Replace with function body.
+
+
+func _on_bullet_area_exited(area):
+	pass;

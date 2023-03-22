@@ -12,7 +12,10 @@ script/source = "extends CharacterBody2D
 enum COW_STATES {idle, walk};
 var COW_STATE : COW_STATES = COW_STATES.idle;
 var WalkDir : Vector2 = Vector2(0,0);
+var health = 30;
 
+func die():
+	queue_free();
 
 func _ready():
 	setNewState();
@@ -63,7 +66,15 @@ func _on_timer_timeout():
 
 func _on_player_tool_action(target):
 	if target == self:
-		self.queue_free();
+		die();
+
+
+func _on_cow_area_entered(area):
+	match area.name:
+		\"bullet\":
+			health -= 10;
+			if (health == 0):
+				die();
 "
 
 [sub_resource type="Animation" id="Animation_hcl25"]
@@ -177,7 +188,6 @@ parameters/conditions/isWalking = false
 
 [node name="cow" type="Area2D" parent="."]
 position = Vector2(1, 4)
-monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cow"]
 position = Vector2(0.5, 1)
@@ -190,3 +200,4 @@ shape = SubResource("RectangleShape2D_mvd3d")
 debug_color = Color(0.945098, 0, 0.588235, 0.419608)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="cow" to="." method="_on_cow_area_entered"]
