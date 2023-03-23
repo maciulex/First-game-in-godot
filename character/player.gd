@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var movement_speed : float = 100;
-@export var knotbackStrength: float = 2000;
+@export var knotbackStrength: float = 1400;
 @export var toolCoolDownTime : float = 1;
 @onready var animation_tree = $AnimationTree;
 var KnockbackRays : Array;

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgjcogstv03p2"]
+[gd_scene load_steps=7 format=3 uid="uid://bgjcogstv03p2"]
 
 [ext_resource type="Script" path="res://HPValLabel.gd" id="1_deujc"]
 [ext_resource type="LabelSettings" uid="uid://b272hkjwiknw6" path="res://art/control.tres" id="1_saqf6"]
-[ext_resource type="Script" path="res://Control.gd" id="3_a5a2j"]
+[ext_resource type="Script" path="res://ToolBar.gd" id="3_0noon"]
 [ext_resource type="Texture2D" uid="uid://be3vxlndmp7o" path="res://art/selected_item.png" id="3_dn34o"]
 [ext_resource type="Texture2D" uid="uid://dxc7ehgbdqyf8" path="res://art/unselected_item.png" id="4_5piy4"]
+[ext_resource type="Texture2D" uid="uid://ou27k3l5sfgd" path="res://art/Sprout Lands - Sprites - Basic pack/Objects/Basic tools and meterials.png" id="6_un314"]
 
 [node name="Control" type="Control"]
 z_index = 999
@@ -48,64 +49,94 @@ text = "3"
 label_settings = ExtResource("1_saqf6")
 script = ExtResource("1_deujc")
 
-[node name="Control" type="Control" parent="."]
+[node name="ToolBar" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 51.0
 offset_top = -1.0
 offset_right = 384.0
 offset_bottom = 274.0
-script = ExtResource("3_a5a2j")
+script = ExtResource("3_0noon")
 
-[node name="UnselectedItem" type="Sprite2D" parent="Control"]
+[node name="UnselectedItem5" type="Sprite2D" parent="ToolBar"]
 position = Vector2(239, 261)
 scale = Vector2(0.377778, 0.333334)
 texture = ExtResource("4_5piy4")
 
-[node name="SelectedItem" type="Sprite2D" parent="Control/UnselectedItem"]
+[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem5"]
 visible = false
 position = Vector2(-6.10352e-05, 6.10352e-05)
 scale = Vector2(0.852941, 0.933333)
 texture = ExtResource("3_dn34o")
 
-[node name="UnselectedItem2" type="Sprite2D" parent="Control"]
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem5"]
+position = Vector2(-0.000244141, 5.99976)
+scale = Vector2(0.28171, 0.279166)
+
+[node name="UnselectedItem4" type="Sprite2D" parent="ToolBar"]
 position = Vector2(215, 261)
 scale = Vector2(0.377778, 0.333334)
 texture = ExtResource("4_5piy4")
 
-[node name="SelectedItem2" type="Sprite2D" parent="Control/UnselectedItem2"]
+[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem4"]
 visible = false
 position = Vector2(2.64703, 6.10352e-05)
 scale = Vector2(0.852941, 0.933333)
 texture = ExtResource("3_dn34o")
 
-[node name="UnselectedItem3" type="Sprite2D" parent="Control"]
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem4"]
+position = Vector2(63.5291, 5.99969)
+scale = Vector2(0.28171, 0.279166)
+
+[node name="UnselectedItem3" type="Sprite2D" parent="ToolBar"]
 position = Vector2(191, 261)
 scale = Vector2(0.377778, 0.333334)
 texture = ExtResource("4_5piy4")
 
-[node name="SelectedItem3" type="Sprite2D" parent="Control/UnselectedItem3"]
+[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem3"]
 visible = false
 position = Vector2(2.64703, 6.10352e-05)
 scale = Vector2(0.852941, 0.933333)
 texture = ExtResource("3_dn34o")
 
-[node name="UnselectedItem4" type="Sprite2D" parent="Control"]
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem3"]
+position = Vector2(127.058, 5.99969)
+scale = Vector2(0.28171, 0.279166)
+
+[node name="UnselectedItem2" type="Sprite2D" parent="ToolBar"]
 position = Vector2(167, 261)
 scale = Vector2(0.377778, 0.333334)
 texture = ExtResource("4_5piy4")
 
-[node name="SelectedItem4" type="Sprite2D" parent="Control/UnselectedItem4"]
+[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem2"]
 visible = false
 position = Vector2(2.64709, 0)
 scale = Vector2(0.852941, 0.933333)
 texture = ExtResource("3_dn34o")
 
-[node name="UnselectedItem5" type="Sprite2D" parent="Control"]
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem2"]
+position = Vector2(190.588, 5.99969)
+scale = Vector2(0.28171, 0.279166)
+
+[node name="UnselectedItem1" type="Sprite2D" parent="ToolBar"]
 position = Vector2(143, 261)
 scale = Vector2(0.377778, 0.333334)
 texture = ExtResource("4_5piy4")
 
-[node name="SelectedItem5" type="Sprite2D" parent="Control"]
-position = Vector2(144, 261)
-scale = Vector2(0.322222, 0.311112)
+[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem1"]
+visible = false
+position = Vector2(2.64709, 0)
+scale = Vector2(0.85294, 0.933334)
 texture = ExtResource("3_dn34o")
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem1"]
+position = Vector2(254.117, 5.99969)
+scale = Vector2(0.28171, 0.279166)
+
+[node name="tools" type="Sprite2D" parent="ToolBar"]
+visible = false
+position = Vector2(4, 1)
+scale = Vector2(2.5, 2.375)
+texture = ExtResource("6_un314")
+hframes = 3
+vframes = 2
+frame = 1

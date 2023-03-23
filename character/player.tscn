@@ -708,7 +708,6 @@ position = Vector2(240, 135)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_mn1hc")
-knotbackStrength = 2500.0
 
 [node name="Control" parent="." instance=ExtResource("3_crd1h")]
 anchors_preset = 0
