@@ -1,18 +1,12 @@
 extends CharacterBody2D
 
 @export var movement_speed : float = 100;
-@export var knotbackStrength: float = 600;
+@export var knotbackStrength: float = 2000;
 @export var toolCoolDownTime : float = 1;
 @onready var animation_tree = $AnimationTree;
 var KnockbackRays : Array;
 
-#best to change futher
-const KnockbackRaysOppositVectors : Array = [
-	[Vector2(2,2),Vector2(1,2),Vector2(0,2)],
-	[Vector2(2,1),null,Vector2(0,1)],
-	[Vector2(2,0),Vector2(1,0),Vector2(0,0)],
-	
-];
+
 signal building;
 signal health;
 signal toolAction;
@@ -119,29 +113,13 @@ func useTool():
 	update_animation("toolUse", Vector2.ZERO);
 	match playerData.equipedTool:
 		playerData.tools.Axe:
-			var collider =getColliderFromVector(playerData.lookingDirection);
+			var collider = getColliderFromVector(playerData.lookingDirection);
 			if (collider != null && collider.is_in_group("tool_axe_action_group")):
 				get_tree().call_group("tool_axe_action_group", "_on_player_tool_action",collider)
 				pass;
 			pass;
 
-func getVectorOfColidedBody(body):
-	var coll = null;
-	for y in range(3):
-		for x in range(3):
-			if (KnockbackRays[y][x] != null && KnockbackRays[y][x].get_collider() == body):
-				coll = 	Vector2(x,y);
-				if (y==1): return coll;
-	return coll;
 
-func getFirstEmptyKnockBackRay():
-	for y in range(3):
-		for x in range(3):
-			if (KnockbackRays[y][x] != null && KnockbackRays[y][x].get_collider() == null):
-				return Vector2(x,y)
-				
-				
-	return null;
 
 
 func takeDamage(damage:int):
@@ -150,20 +128,11 @@ func takeDamage(damage:int):
 
 func _on_character_collision_body_entered(body):
 	if (body.is_in_group("Enemys")):
-		var collBody = getVectorOfColidedBody(body);
-		collBody = KnockbackRaysOppositVectors[collBody.y][collBody.x];
-		
-		if (collBody == null || KnockbackRays[collBody.y][collBody.x].get_collider() != null):
-			getFirstEmptyKnockBackRay();
-			
-		collBody.x -= 1;
-		collBody.y -= 1;
-		collBody.y *= -1
-		
-		velocity = collBody * knotbackStrength;
-		move_and_slide();
+		var angle = position.angle_to_point(body.position)+3.14159265;
+		var vector = Vector2.from_angle(angle);
+		velocity = vector * knotbackStrength;
+		(move_and_slide());
 		takeDamage(10);
-
 	pass # Replace with function body.\
 	
 

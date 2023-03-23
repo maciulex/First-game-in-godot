@@ -100,7 +100,6 @@ func _on_aimbot_timeout():
 	pass # Replace with function body.
 
 func _on_cow_area_entered(area):
-	print(area.get_parent().name)
 	if (area.name == "bullet" && (area.get_parent().shooter != $cow.get_rid())):
 		health -= 10;
 		if (health == 0):
