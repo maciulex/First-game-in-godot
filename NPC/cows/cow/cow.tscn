@@ -164,6 +164,7 @@ graph_offset = Vector2(-103, 52)
 size = Vector2(25, 16)
 
 [node name="cow" type="CharacterBody2D" groups=["Enemys", "alive", "tool_axe_action_group"]]
+z_index = 100
 script = SubResource("GDScript_t15gv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

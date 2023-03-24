@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdrrb3nt2gd6v"]
+[gd_scene load_steps=20 format=3 uid="uid://cdrrb3nt2gd6v"]
 
 [ext_resource type="PackedScene" uid="uid://rsl43nlh0qrc" path="res://character/player.tscn" id="1_8ombt"]
 [ext_resource type="Script" path="res://game_level.gd" id="1_15jui"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dpddi8nvsbcy3" path="res://NPC/cows/cow/cow.tscn" id="8_1wffd"]
 [ext_resource type="PackedScene" uid="uid://bb0i0x7ippwgx" path="res://building/home.tscn" id="9_byatf"]
 [ext_resource type="PackedScene" uid="uid://c1hkcomwcy5ra" path="res://NPC/cows/cowArmed/cowArmed.tscn" id="11_n7n0e"]
+[ext_resource type="PackedScene" uid="uid://bxfa1ad3u6xv7" path="res://utils/porkchop/porkchop.tscn" id="12_3e2ji"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7y6o0"]
 texture = ExtResource("2_f5xm6")
@@ -775,7 +776,12 @@ position = Vector2(186, 157)
 position = Vector2(215, 230)
 
 [node name="cowArmed" parent="." instance=ExtResource("11_n7n0e")]
+z_index = 0
 position = Vector2(354, 293)
 
 [node name="cowArmed2" parent="." instance=ExtResource("11_n7n0e")]
+z_index = 0
 position = Vector2(444, 405)
+
+[node name="porkchop" parent="." instance=ExtResource("12_3e2ji")]
+position = Vector2(408, 315)

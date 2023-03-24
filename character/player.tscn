@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://rsl43nlh0qrc"]
+[gd_scene load_steps=58 format=3 uid="uid://rsl43nlh0qrc"]
 
 [ext_resource type="Script" path="res://character/player.gd" id="1_mn1hc"]
 [ext_resource type="Texture2D" uid="uid://cn4x7jsytg3s3" path="res://art/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="2_401qo"]
@@ -157,6 +157,166 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [10, 11, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("toolsUsage:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fctso"]
+resource_name = "UseHoeDown"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("toolsUsage:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("toolsUsage:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_mcjl0"]
+resource_name = "UseHoeLeft"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("toolsUsage:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("toolsUsage:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_wucbg"]
+resource_name = "UseHoeRight"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("toolsUsage:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("toolsUsage:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_yyowi"]
+resource_name = "UseHoeUp"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("toolsUsage:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -558,6 +718,10 @@ _data = {
 "UseAxeLeft": SubResource("Animation_wvh1j"),
 "UseAxeRight": SubResource("Animation_gb581"),
 "UseAxeUp": SubResource("Animation_7vw5s"),
+"UseHoeDown": SubResource("Animation_fctso"),
+"UseHoeLeft": SubResource("Animation_mcjl0"),
+"UseHoeRight": SubResource("Animation_wucbg"),
+"UseHoeUp": SubResource("Animation_yyowi"),
 "idle": SubResource("Animation_vxfti"),
 "idle_down": SubResource("Animation_hqo7y"),
 "idle_left": SubResource("Animation_vlskw"),
@@ -569,37 +733,71 @@ _data = {
 "walk_up": SubResource("Animation_k4bvx")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v60ry"]
-animation = &"UseAxeDown"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bhtwe"]
-animation = &"UseAxeLeft"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iac7u"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gkwia"]
 animation = &"UseAxeUp"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mnn8w"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kt7j8"]
+animation = &"UseAxeLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iq8r8"]
+animation = &"UseAxeDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h7trw"]
 animation = &"UseAxeRight"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_24efs"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_v60ry")
-blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_bhtwe")
-blend_point_1/pos = Vector2(-0.9, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_iac7u")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_mnn8w")
-blend_point_3/pos = Vector2(0.8, 0)
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_8byvn"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_gkwia")
+blend_point_0/pos = Vector2(0, -1.1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_kt7j8")
+blend_point_1/pos = Vector2(-1.1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_iq8r8")
+blend_point_2/pos = Vector2(0, 1.1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_h7trw")
+blend_point_3/pos = Vector2(1.1, 0)
 min_space = Vector2(-1.2, -1.2)
 max_space = Vector2(1.2, 1.2)
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kd4ia"]
+animation = &"UseHoeDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_barbs"]
+animation = &"UseHoeUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v663m"]
+animation = &"UseHoeLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8xfdi"]
+animation = &"UseHoeRight"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_kovsq"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_kd4ia")
+blend_point_0/pos = Vector2(0, 1.1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_barbs")
+blend_point_1/pos = Vector2(0, -1.1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_v663m")
+blend_point_2/pos = Vector2(-1.1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_8xfdi")
+blend_point_3/pos = Vector2(1.1, 0)
+min_space = Vector2(-1.2, -1.2)
+max_space = Vector2(1.2, 1.2)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_6hfgi"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace2D_8byvn")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeBlendSpace2D_kovsq")
+blend_point_1/pos = 1.0
+max_space = 10.0
+snap = 1.0
+blend_mode = 1
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6lhur"]
-graph_offset = Vector2(80.6255, 11.6929)
-nodes/UseAxe/node = SubResource("AnimationNodeBlendSpace2D_24efs")
-nodes/UseAxe/position = Vector2(520, 20)
-nodes/output/position = Vector2(860, 80)
-node_connections = [&"output", 0, &"UseAxe"]
+graph_offset = Vector2(307.493, 65.1074)
+nodes/UseTool/node = SubResource("AnimationNodeBlendSpace1D_6hfgi")
+nodes/UseTool/position = Vector2(720, 100)
+nodes/output/position = Vector2(960, 100)
+node_connections = [&"output", 0, &"UseTool"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8yhde"]
 animation = &"idle_left"
@@ -690,9 +888,9 @@ advance_condition = &"isIdle"
 states/End/position = Vector2(891, 128)
 states/Start/position = Vector2(200, 62)
 states/UseTool/node = SubResource("AnimationNodeBlendTree_6lhur")
-states/UseTool/position = Vector2(571, 205)
+states/UseTool/position = Vector2(566, 192)
 states/idle/node = SubResource("AnimationNodeBlendSpace2D_wvre4")
-states/idle/position = Vector2(445, 91)
+states/idle/position = Vector2(446, 99)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_t1r2u")
 states/walk/position = Vector2(734, 99)
 transitions = ["UseTool", "walk", SubResource("AnimationNodeStateMachineTransition_6bv2q"), "walk", "UseTool", SubResource("AnimationNodeStateMachineTransition_f40ye"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_otp7a"), "UseTool", "idle", SubResource("AnimationNodeStateMachineTransition_khtxx"), "idle", "UseTool", SubResource("AnimationNodeStateMachineTransition_2wej7"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_t3kp7"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_1sild")]
@@ -704,6 +902,7 @@ graph_offset = Vector2(-141, 32)
 size = Vector2(8, 16)
 
 [node name="Player" type="CharacterBody2D" groups=["CowEnemy"]]
+z_index = 500
 position = Vector2(240, 135)
 collision_layer = 3
 collision_mask = 3
@@ -733,7 +932,7 @@ visible = false
 texture = ExtResource("4_wqlyb")
 hframes = 2
 vframes = 12
-frame = 8
+frame = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5ofvq")
@@ -751,7 +950,9 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_rq3d2")
 parameters/conditions/IsMoving = false
 parameters/conditions/isIdle = true
 parameters/conditions/useTool = false
-parameters/UseTool/UseAxe/blend_position = Vector2(0, 0)
+parameters/UseTool/UseTool/blend_position = 0
+parameters/UseTool/UseTool/0/blend_position = Vector2(0, 0)
+parameters/UseTool/UseTool/1/blend_position = Vector2(0, 0)
 parameters/idle/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(-0.00694072, -0.0720524)
 
@@ -763,6 +964,8 @@ zoom = Vector2(4, 4)
 
 [node name="CharacterCollision" type="Area2D" parent="."]
 position = Vector2(1, 4)
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterCollision"]
 position = Vector2(-1, -4)
@@ -770,6 +973,7 @@ shape = SubResource("RectangleShape2D_6h05r")
 debug_color = Color(0.901961, 0, 0.756863, 0.419608)
 
 [node name="RayCastsContainer" type="Node2D" parent="."]
+visible = false
 
 [node name="RayCast2D1" type="RayCast2D" parent="RayCastsContainer"]
 target_position = Vector2(0, 16)
@@ -798,7 +1002,10 @@ target_position = Vector2(11, 11)
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="itemPicked" from="." to="Control" method="_on_player_item_picked"]
+[connection signal="itemClicked" from="Control" to="." method="_on_control_item_clicked"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="area_entered" from="CharacterCollision" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="CharacterCollision" to="." method="_on_character_collision_area_exited"]
 [connection signal="body_entered" from="CharacterCollision" to="." method="_on_character_collision_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

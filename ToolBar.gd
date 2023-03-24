@@ -12,32 +12,33 @@ extends Control
 
 func selectItemInToolBar(index : int = -1):
 	if (index == -1):
-		toolbarBoxes[playerData.toolbarSelectedItem].get_node("SelectedItem").visible = true;
+		toolbarBoxes[playerData.equipedTool].get_node("SelectedItem").visible = true;
 		return;
-	toolbarBoxes[playerData.toolbarSelectedItem].get_node("SelectedItem").visible = false;
-	playerData.toolbarSelectedItem = index;
-	toolbarBoxes[playerData.toolbarSelectedItem].get_node("SelectedItem").visible = true;
+	toolbarBoxes[playerData.equipedTool].get_node("SelectedItem").visible = false;
+	playerData.equipedTool = index;
+	toolbarBoxes[playerData.equipedTool].get_node("SelectedItem").visible = true;
 
-func getTexture(textureName):
+func getSprite(textureName):
 	match textureName:
 		null:
 			return null;
-		"axe":
-			$tools.frame = 1;
-			return $tools.duplicate();	
-		"hoe":
-			$tools.frame = 2;
-			return $tools.duplicate();	
-	return null;
+		playerData.tools.Axe:
+			return  $icons/axe.duplicate();				
+		playerData.tools.Hoe:
+			return $icons/hoe.duplicate();	
+	print( textureName.get_node("Sprite"));
+	var sprite = textureName.get_node("Sprite").duplicate()
+	if (textureName.item_scale != null):
+		sprite.scale *= textureName.item_scale
+	return sprite;
 	
 func loadSpritesForToolBar():
 	for i in range(5):
-		var sprite = getTexture(playerData.toolbarItems[i]);
+		var sprite = getSprite(playerData.toolbarItems[i]);
 		if (sprite == null): return;
-		sprite.visible = true;
-		sprite.name = "Sprite";
-		toolbarBoxes[i].get_node("Sprite").queue_free();
-		toolbarBoxes[i].add_child(sprite);
+		print(sprite);
+		toolbarBoxes[i].get_node("spriteContainer").get_children()[0].queue_free();
+		toolbarBoxes[i].get_node("spriteContainer").add_child(sprite);
 	pass;
 
 func _physics_process(delta):
@@ -48,3 +49,4 @@ func _physics_process(delta):
 func _ready():
 	selectItemInToolBar();
 	loadSpritesForToolBar()
+

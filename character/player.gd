@@ -6,14 +6,19 @@ extends CharacterBody2D
 @onready var animation_tree = $AnimationTree;
 var KnockbackRays : Array;
 
-
+signal itemsOngroundUpdate;
 signal building;
 signal health;
 signal toolAction;
+signal itemPicked;
 var playerData;
+
+
 
 func _ready():
 	self.health.connect($Control/HPValLabel.updateHp);
+	self.itemsOngroundUpdate.connect($Control/ItemsOnGround.updateItemList);
+	
 	playerData = get_node("/root/PlayerData");
 	KnockbackRays = [
 		[
@@ -68,7 +73,8 @@ func animationForTools():
 	animation_tree.set("parameters/conditions/IsMoving", false);
 	animation_tree.set("parameters/conditions/isIdle", false);
 	animation_tree.set("parameters/conditions/useTool", true);
-	animation_tree.set("parameters/UseTool/UseAxe/blend_position", playerData.lookingDirection);	
+	animation_tree.set("parameters/UseTool/UseTool/blend_position", playerData.equipedTool);	
+	animation_tree.set("parameters/UseTool/UseTool/"+str(playerData.equipedTool)+"/blend_position", playerData.lookingDirection);	
 	
 	pass;
 
@@ -88,7 +94,14 @@ func _on_area_2d_area_entered(area):
 			building.emit("exit");
 		"bullet":
 			takeDamage(10);
+		"item":
+			itemsOngroundUpdate.emit(area.get_parent(), "add");
 	pass # Replace with function body.
+
+func _on_character_collision_area_exited(area):
+	match area.name:
+		"item":
+			itemsOngroundUpdate.emit(area.get_parent(), "remove");
 
 func getColliderFromVector(vector : Vector2):
 	match int(vector.y):
@@ -109,14 +122,21 @@ func blockPlayerMovement():
 	update_animation("movement", Vector2.ZERO);
 
 func useTool():
-	blockPlayerMovement();
-	update_animation("toolUse", Vector2.ZERO);
+	print(playerData.toolbarItems[playerData.equipedTool] )
+	if playerData.toolbarItems[playerData.equipedTool] == null:
+		return;
+		
 	match playerData.equipedTool:
 		playerData.tools.Axe:
+			blockPlayerMovement();
+			update_animation("toolUse", Vector2.ZERO);
 			var collider = getColliderFromVector(playerData.lookingDirection);
 			if (collider != null && collider.is_in_group("tool_axe_action_group")):
 				get_tree().call_group("tool_axe_action_group", "_on_player_tool_action",collider)
 				pass;
+		playerData.tools.Hoe:
+			blockPlayerMovement();
+			update_animation("toolUse", Vector2.ZERO);
 			pass;
 
 
@@ -147,3 +167,19 @@ func _on_timer_timeout():
 	if (playerData.toolCoolDown):
 		playerData.toolCoolDown = false;
 	pass # Replace with function body.
+
+
+func freeInventorySpace() -> int:
+	return playerData.toolbarItems.find(null);
+
+
+func _on_control_item_clicked(index):
+	var invSpace = freeInventorySpace();
+	if invSpace == -1:
+		return;
+	playerData.toolbarItems[invSpace] = playerData.itemsOnGround[index].duplicate();
+	playerData.itemsOnGround[index].queue_free();
+	playerData.itemsOnGround.remove_at(index);
+	print(playerData.toolbarItems[invSpace]);
+	itemPicked.emit();
+	pass;

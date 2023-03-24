@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgjcogstv03p2"]
+[gd_scene load_steps=10 format=3 uid="uid://bgjcogstv03p2"]
 
 [ext_resource type="Script" path="res://HPValLabel.gd" id="1_deujc"]
+[ext_resource type="Script" path="res://control.gd" id="1_fahi8"]
 [ext_resource type="LabelSettings" uid="uid://b272hkjwiknw6" path="res://art/control.tres" id="1_saqf6"]
 [ext_resource type="Script" path="res://ToolBar.gd" id="3_0noon"]
 [ext_resource type="Texture2D" uid="uid://be3vxlndmp7o" path="res://art/selected_item.png" id="3_dn34o"]
 [ext_resource type="Texture2D" uid="uid://dxc7ehgbdqyf8" path="res://art/unselected_item.png" id="4_5piy4"]
-[ext_resource type="Texture2D" uid="uid://ou27k3l5sfgd" path="res://art/Sprout Lands - Sprites - Basic pack/Objects/Basic tools and meterials.png" id="6_un314"]
+[ext_resource type="Texture2D" uid="uid://02pvfy4scowm" path="res://art/Sprout Lands - Sprites - Basic pack/icons/axe.png" id="7_l5mct"]
+[ext_resource type="Script" path="res://ItemsOnGround.gd" id="7_vjnma"]
+[ext_resource type="Texture2D" uid="uid://gsbfnt1wnakd" path="res://art/Sprout Lands - Sprites - Basic pack/icons/hoe.png" id="8_gctq5"]
 
 [node name="Control" type="Control"]
 z_index = 999
@@ -17,6 +20,7 @@ offset_right = -436.12
 offset_bottom = -333.04
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fahi8")
 
 [node name="GoodGameLabel" type="Label" parent="."]
 layout_mode = 0
@@ -68,7 +72,9 @@ position = Vector2(-6.10352e-05, 6.10352e-05)
 scale = Vector2(0.852941, 0.933333)
 texture = ExtResource("3_dn34o")
 
-[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem5"]
+[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem5"]
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem5/spriteContainer"]
 position = Vector2(-0.000244141, 5.99976)
 scale = Vector2(0.28171, 0.279166)
 
@@ -83,8 +89,10 @@ position = Vector2(2.64703, 6.10352e-05)
 scale = Vector2(0.852941, 0.933333)
 texture = ExtResource("3_dn34o")
 
-[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem4"]
-position = Vector2(63.5291, 5.99969)
+[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem4"]
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem4/spriteContainer"]
+position = Vector2(-0.000244141, 5.99976)
 scale = Vector2(0.28171, 0.279166)
 
 [node name="UnselectedItem3" type="Sprite2D" parent="ToolBar"]
@@ -98,8 +106,10 @@ position = Vector2(2.64703, 6.10352e-05)
 scale = Vector2(0.852941, 0.933333)
 texture = ExtResource("3_dn34o")
 
-[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem3"]
-position = Vector2(127.058, 5.99969)
+[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem3"]
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem3/spriteContainer"]
+position = Vector2(-0.000244141, 5.99976)
 scale = Vector2(0.28171, 0.279166)
 
 [node name="UnselectedItem2" type="Sprite2D" parent="ToolBar"]
@@ -113,8 +123,10 @@ position = Vector2(2.64709, 0)
 scale = Vector2(0.852941, 0.933333)
 texture = ExtResource("3_dn34o")
 
-[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem2"]
-position = Vector2(190.588, 5.99969)
+[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem2"]
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem2/spriteContainer"]
+position = Vector2(-0.000244141, 5.99976)
 scale = Vector2(0.28171, 0.279166)
 
 [node name="UnselectedItem1" type="Sprite2D" parent="ToolBar"]
@@ -128,15 +140,61 @@ position = Vector2(2.64709, 0)
 scale = Vector2(0.85294, 0.933334)
 texture = ExtResource("3_dn34o")
 
-[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem1"]
-position = Vector2(254.117, 5.99969)
+[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem1"]
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem1/spriteContainer"]
+position = Vector2(-0.000244141, 5.99976)
 scale = Vector2(0.28171, 0.279166)
 
-[node name="tools" type="Sprite2D" parent="ToolBar"]
+[node name="icons" type="Node2D" parent="ToolBar"]
 visible = false
-position = Vector2(4, 1)
-scale = Vector2(2.5, 2.375)
-texture = ExtResource("6_un314")
-hframes = 3
-vframes = 2
-frame = 1
+
+[node name="axe" type="Sprite2D" parent="ToolBar/icons"]
+position = Vector2(0, 1)
+scale = Vector2(0.642857, 0.642857)
+texture = ExtResource("7_l5mct")
+
+[node name="hoe" type="Sprite2D" parent="ToolBar/icons"]
+position = Vector2(-9.53674e-07, 1)
+scale = Vector2(0.875, 0.828125)
+texture = ExtResource("8_gctq5")
+
+[node name="ItemsOnGround" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 121.0
+offset_right = 119.0
+offset_bottom = 269.0
+script = ExtResource("7_vjnma")
+
+[node name="Title" type="Label" parent="ItemsOnGround"]
+layout_mode = 2
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 588.0
+offset_bottom = 119.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 80
+text = "Itemy na ziemi:"
+
+[node name="VScrollBar" type="VScrollBar" parent="ItemsOnGround"]
+visible = false
+layout_mode = 0
+offset_left = 66.0
+offset_top = 15.0
+offset_right = 74.0
+offset_bottom = 124.0
+
+[node name="ItemList" type="ItemList" parent="ItemsOnGround"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 17.0
+offset_right = 328.0
+offset_bottom = 572.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/font_size = 39
+item_count = 1
+item_0/text = ""
+
+[connection signal="itemClicked" from="ItemsOnGround" to="." method="_on_items_on_ground_item_clicked"]
+[connection signal="item_activated" from="ItemsOnGround/ItemList" to="ItemsOnGround" method="_on_item_list_item_activated"]

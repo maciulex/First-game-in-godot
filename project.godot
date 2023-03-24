@@ -83,6 +83,7 @@ space={
 
 2d_physics/layer_2="Wykrywanie gracza"
 2d_physics/layer_3="Wykrywanie żywych"
+2d_physics/layer_4="Itemy na ziemi"
 
 [rendering]
 
