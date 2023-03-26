@@ -26,13 +26,34 @@ func getSprite(textureName):
 	if (textureName.item_scale != null):
 		sprite.scale *= textureName.item_scale
 	return sprite;
-	
+
+func loadSpriteForToolBarIndex(i):
+	var sprite = getSprite(playerData.toolbarItems[i]);
+	if (sprite == null): return;
+	toolbarBoxes[i].get_node("spriteContainer").get_children()[0].queue_free();
+	toolbarBoxes[i].get_node("spriteContainer").add_child(sprite);
+
 func loadSpritesForToolBar():
 	for i in range(5):
-		var sprite = getSprite(playerData.toolbarItems[i]);
-		if (sprite == null): return;
-		toolbarBoxes[i].get_node("spriteContainer").get_children()[0].queue_free();
-		toolbarBoxes[i].get_node("spriteContainer").add_child(sprite);
+		loadSpriteForToolBarIndex(i);
+	
+func updateToolbarAmountValAtIndex(i):
+	if (playerData.toolbarItems[i] == null): 
+		toolbarBoxes[i].get_node("Amount").visible = false;
+		return;			
+	if (playerData.toolbarItems[i].get("DisplayAmount")):
+		toolbarBoxes[i].get_node("Amount").visible = true;
+		toolbarBoxes[i].get_node("Amount").text = str(playerData.toolbarItems[i].get("Amount"));
+	else:
+		toolbarBoxes[i].get_node("Amount").visible = false;
+
+func updateToolBarAmountVals():
+	for i in range(5):
+		updateToolbarAmountValAtIndex(i);
+
+func updateToolbarAtIndex(index):
+	loadSpriteForToolBarIndex(index);
+	updateToolbarAmountValAtIndex(index);
 	pass;
 
 func _physics_process(delta):
@@ -43,4 +64,4 @@ func _physics_process(delta):
 func _ready():
 	selectItemInToolBar();
 	loadSpritesForToolBar()
-
+	updateToolBarAmountVals();

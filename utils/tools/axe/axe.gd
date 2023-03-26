@@ -9,6 +9,10 @@ var initialized : bool = false;
 const Item_name : String = "Siekiera"; 
 const item_scale : Vector2 = Vector2(2,2);
 
+@export var Amount : int = 1;
+@export var MaksStackSize : int = 1;
+@export var DisplayAmount : bool = false;
+
 func _ready():
 	globalData = get_node("/root/GlobalData");
 	

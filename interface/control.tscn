@@ -60,6 +60,7 @@ offset_top = -1.0
 offset_right = 384.0
 offset_bottom = 274.0
 script = ExtResource("4_3rqbo")
+metadata/_edit_lock_ = true
 
 [node name="UnselectedItem5" type="Sprite2D" parent="ToolBar"]
 position = Vector2(239, 261)
@@ -78,6 +79,14 @@ texture = ExtResource("6_wxbpq")
 position = Vector2(-0.000244141, 5.99976)
 scale = Vector2(0.28171, 0.279166)
 
+[node name="Amount" type="Label" parent="ToolBar/UnselectedItem5"]
+offset_left = 2.64709
+offset_top = 9.0
+offset_right = 26.6471
+offset_bottom = 35.0
+text = "1"
+horizontal_alignment = 2
+
 [node name="UnselectedItem4" type="Sprite2D" parent="ToolBar"]
 position = Vector2(215, 261)
 scale = Vector2(0.377778, 0.333334)
@@ -94,6 +103,14 @@ texture = ExtResource("6_wxbpq")
 [node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem4/spriteContainer"]
 position = Vector2(-0.000244141, 5.99976)
 scale = Vector2(0.28171, 0.279166)
+
+[node name="Amount" type="Label" parent="ToolBar/UnselectedItem4"]
+offset_left = 2.64709
+offset_top = 9.0
+offset_right = 26.6471
+offset_bottom = 35.0
+text = "1"
+horizontal_alignment = 2
 
 [node name="UnselectedItem3" type="Sprite2D" parent="ToolBar"]
 position = Vector2(191, 261)
@@ -112,6 +129,14 @@ texture = ExtResource("6_wxbpq")
 position = Vector2(-0.000244141, 5.99976)
 scale = Vector2(0.28171, 0.279166)
 
+[node name="Amount" type="Label" parent="ToolBar/UnselectedItem3"]
+offset_left = 2.64709
+offset_top = 9.0
+offset_right = 26.6471
+offset_bottom = 35.0
+text = "1"
+horizontal_alignment = 2
+
 [node name="UnselectedItem2" type="Sprite2D" parent="ToolBar"]
 position = Vector2(167, 261)
 scale = Vector2(0.377778, 0.333334)
@@ -129,6 +154,14 @@ texture = ExtResource("6_wxbpq")
 position = Vector2(-0.000244141, 5.99976)
 scale = Vector2(0.28171, 0.279166)
 
+[node name="Amount" type="Label" parent="ToolBar/UnselectedItem2"]
+offset_left = 2.64709
+offset_top = 9.0
+offset_right = 26.6471
+offset_bottom = 35.0
+text = "1"
+horizontal_alignment = 2
+
 [node name="UnselectedItem1" type="Sprite2D" parent="ToolBar"]
 position = Vector2(143, 261)
 scale = Vector2(0.377778, 0.333334)
@@ -145,6 +178,14 @@ texture = ExtResource("6_wxbpq")
 [node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem1/spriteContainer"]
 position = Vector2(-0.000244141, 5.99976)
 scale = Vector2(0.28171, 0.279166)
+
+[node name="Amount" type="Label" parent="ToolBar/UnselectedItem1"]
+offset_left = 2.64709
+offset_top = 9.0
+offset_right = 26.6471
+offset_bottom = 35.0
+text = "1"
+horizontal_alignment = 2
 
 [node name="icons" type="Node2D" parent="ToolBar"]
 visible = false
@@ -194,6 +235,14 @@ offset_right = 328.0
 offset_bottom = 572.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/font_size = 39
+
+[node name="Inventory" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 73.0
+offset_top = 42.0
+offset_right = 444.0
+offset_bottom = 224.0
+metadata/_edit_lock_ = true
 
 [connection signal="itemClicked" from="ItemsOnGround" to="." method="_on_items_on_ground_item_clicked"]
 [connection signal="item_activated" from="ItemsOnGround/ItemList" to="ItemsOnGround" method="_on_item_list_item_activated"]

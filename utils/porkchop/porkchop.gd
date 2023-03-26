@@ -7,6 +7,10 @@ extends Node2D
 const Item_name : String = "Mięsko"; 
 const item_scale : Vector2 = Vector2(4,4);
 
+@export var Amount : int = 1;
+@export var MaksStackSize : int = 64
+@export var DisplayAmount : bool = true;
+
 func _ready():
 	Item_id = globalData.items.Porkchop;
 	Item_type = globalData.itemType.item;

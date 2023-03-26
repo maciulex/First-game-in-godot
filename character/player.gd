@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var movement_speed : float = 100;
 @export var knotbackStrength: float = 1400;
 @export var toolCoolDownTime : float = 1;
+@export var itemCoolDownTime : float = 0.2;
+
 @onready var animation_tree = $AnimationTree;
 var KnockbackRays : Array;
 
@@ -52,14 +54,12 @@ func _physics_process(delta):
 	if (playerData.movementBlock):
 		return;	
 	
-	var toolUse = Input.get_action_strength("space");
+	var useAction = Input.get_action_strength("space");
 	var itemDrop = Input.get_action_strength("q");
 	var fastPickUpItem = Input.get_action_strength("e");
 	
-	if (toolUse && !playerData.toolCoolDown):
-		$Timer.start(toolCoolDownTime);
-		playerData.toolCoolDown = true;
-		useTool();
+	if (useAction && !playerData.toolCoolDown):
+		useFromToolBar();
 	else:
 		velocity = input_direction * movement_speed;
 		update_animation("movement",input_direction)
@@ -132,11 +132,28 @@ func blockPlayerMovement():
 	playerData.movementBlock = true;
 	update_animation("movement", Vector2.ZERO);
 
-func useTool():
-	print(playerData.toolbarItems[playerData.equipedTool] )
+func useFromToolBar():
 	if playerData.toolbarItems[playerData.equipedTool] == null:
 		return;
-	print(playerData.toolbarItems[playerData.equipedTool].get("Item_id"), " ", playerData.globals.items.Axe)
+	print(playerData.toolbarItems[playerData.equipedTool].get("Item_type"));
+	match playerData.toolbarItems[playerData.equipedTool].get("Item_type"):
+		playerData.globals.itemType.tool:
+			useTool();
+		playerData.globals.itemType.item:
+			useItem();
+			
+func useItem():
+	$Timer.start(itemCoolDownTime);
+	playerData.toolCoolDown = true;
+	print("Use Item")
+	match playerData.toolbarItems[playerData.equipedTool].get("Item_id"):
+		playerData.globals.items.Porkchop:
+			pass;
+	pass;	
+	
+func useTool():
+	$Timer.start(toolCoolDownTime);
+	playerData.toolCoolDown = true;
 	match playerData.toolbarItems[playerData.equipedTool].get("Item_id"):
 		playerData.globals.items.Axe:
 			blockPlayerMovement();
@@ -146,7 +163,6 @@ func useTool():
 				get_tree().call_group("tool_axe_action_group", "_on_player_tool_action",collider)
 				pass;
 		playerData.globals.items.Hoe:
-			print("dsad")
 			blockPlayerMovement();
 			update_animation("toolUse", Vector2.ZERO);
 			pass;
@@ -184,14 +200,44 @@ func _on_timer_timeout():
 func freeInventorySpace() -> int:
 	return playerData.toolbarItems.find(null);
 
+func findNotFullInventoryStack(object) -> int:
+	for	i in range(5):
+		if (playerData.toolbarItems[i] == null):
+			continue;
+		if (playerData.toolbarItems[i].get("Item_id") != object.get("Item_id")):
+			continue;
+		if (playerData.toolbarItems[i].get("MaksStackSize") > playerData.toolbarItems[i].get("Amount") + object.get("Amount")):
+			return i;
+	return -1;
 
-func _on_control_item_clicked(index):
+func addItemToInventoryStack(invIndex, amount):
+	playerData.toolbarItems[invIndex].Amount += amount;
+	itemPicked.emit(invIndex);	
+	print("done");
+	pass;
+
+func addNewItemToInventoryFromGround(itemGroundIndex):
 	var invSpace = freeInventorySpace();
 	if invSpace == -1:
 		return;
-	playerData.toolbarItems[invSpace] = playerData.itemsOnGround[index].duplicate();
-	playerData.itemsOnGround[index].queue_free();
-	playerData.itemsOnGround.remove_at(index);
-	print(playerData.toolbarItems[invSpace]);
-	itemPicked.emit();
+	playerData.toolbarItems[invSpace] = playerData.itemsOnGround[itemGroundIndex].duplicate();
+	freeItemOnGround(itemGroundIndex);
+	itemPicked.emit(invSpace);
+
+func freeItemOnGround(itemGroundIndex):
+	playerData.itemsOnGround[itemGroundIndex].queue_free();
+	playerData.itemsOnGround.remove_at(itemGroundIndex);
+
+func pickUpItemToInventory(onGroundIndex):
+	var stackSpace = findNotFullInventoryStack(playerData.itemsOnGround[onGroundIndex]);
+	print(stackSpace);
+	if (stackSpace != -1):
+		addItemToInventoryStack(stackSpace, playerData.itemsOnGround[onGroundIndex].get("Amount"));
+		freeItemOnGround(onGroundIndex);	
+		return;
+	addNewItemToInventoryFromGround(onGroundIndex);
+
+
+func _on_control_item_clicked(index):
+	pickUpItemToInventory(index);
 	pass;
