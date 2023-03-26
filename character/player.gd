@@ -61,8 +61,9 @@ func _physics_process(delta):
 	var useAction = Input.get_action_strength("space");
 	var itemDrop = Input.get_action_strength("q");
 	var action = Input.get_action_strength("e");
-	
-	if (itemDrop > 0):
+	if (action > 0):
+		actionGroup();
+	elif (itemDrop > 0):
 		dropItem();
 	if (useAction && !playerData.toolCoolDown):
 		useFromToolBar();
@@ -72,6 +73,15 @@ func _physics_process(delta):
 	velocity = input_direction * movement_speed;
 	update_animation("movement",input_direction)
 	move_and_slide();
+
+func actionGroup():
+	var object = getColliderFromVector(playerData.lookingDirection);
+	if (object == null):
+		return;
+	if "PrimaryName" in object:
+		match object.PrimaryName:
+			"Furnace":
+				print("fururu")
 
 
 func animationForWalkOrIdle(move_input : Vector2):
@@ -143,7 +153,7 @@ func blockPlayerMovement():
 func useFromToolBar():
 	if playerData.toolbarItems[playerData.equipedTool] == null:
 		return;
-	match playerData.toolbarItems[playerData.equipedTool].get("Item_type"):
+	match playerData.toolbarItems[playerData.equipedTool].Item_type:
 		playerData.globals.itemType.tool:
 			useTool();
 		playerData.globals.itemType.item:
@@ -152,7 +162,7 @@ func useFromToolBar():
 func useItem():
 	$Timer.start(itemCoolDownTime);
 	playerData.toolCoolDown = true;
-	match playerData.toolbarItems[playerData.equipedTool].get("Item_id"):
+	match playerData.toolbarItems[playerData.equipedTool].Item_id:
 		playerData.globals.items.Porkchop:
 			pass;
 	pass;	
@@ -160,7 +170,7 @@ func useItem():
 func useTool():
 	$Timer.start(toolCoolDownTime);
 	playerData.toolCoolDown = true;
-	match playerData.toolbarItems[playerData.equipedTool].get("Item_id"):
+	match playerData.toolbarItems[playerData.equipedTool].Item_id:
 		playerData.globals.items.Axe:
 			blockPlayerMovement();
 			update_animation("toolUse", Vector2.ZERO);

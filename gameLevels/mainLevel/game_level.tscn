@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cnxeh0xn7cfxh"]
+[gd_scene load_steps=23 format=3 uid="uid://cnxeh0xn7cfxh"]
 
 [ext_resource type="Script" path="res://gameLevels/mainLevel/game_level.gd" id="1_mh83j"]
 [ext_resource type="PackedScene" uid="uid://rsl43nlh0qrc" path="res://character/player.tscn" id="2_a0jd0"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bxfa1ad3u6xv7" path="res://utils/porkchop/porkchop.tscn" id="12_bplcg"]
 [ext_resource type="PackedScene" uid="uid://6t4yqhuac60b" path="res://utils/tools/axe/axe.tscn" id="13_bct88"]
 [ext_resource type="PackedScene" uid="uid://b3hlfdicn6pmq" path="res://utils/tools/hoe/hoe.tscn" id="14_tnovc"]
+[ext_resource type="PackedScene" uid="uid://v163y6wi8556" path="res://utils/furniture/furnace/furnace.tscn" id="15_2yh8w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7y6o0"]
 texture = ExtResource("3_pdlpj")
@@ -809,3 +810,6 @@ position = Vector2(354, 293)
 [node name="cowArmed2" parent="Enemys" instance=ExtResource("11_tnb3c")]
 z_index = 0
 position = Vector2(444, 405)
+
+[node name="furnace" parent="." instance=ExtResource("15_2yh8w")]
+position = Vector2(426, 286)
