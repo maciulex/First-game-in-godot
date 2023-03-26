@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://6t4yqhuac60b"]
+
+[ext_resource type="Texture2D" uid="uid://02pvfy4scowm" path="res://art/Sprout Lands - Sprites - Basic pack/icons/axe.png" id="1_myeqv"]
+[ext_resource type="Script" path="res://utils/tools/axe/axe.gd" id="1_sdqr4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apvjk"]
+size = Vector2(4.3125, 8.375)
+
+[node name="axe" type="Node2D"]
+script = ExtResource("1_sdqr4")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2.38419e-07, 4.76837e-07)
+scale = Vector2(0.189453, 0.18125)
+texture = ExtResource("1_myeqv")
+
+[node name="item" type="Area2D" parent="."]
+z_as_relative = false
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="item"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_apvjk")

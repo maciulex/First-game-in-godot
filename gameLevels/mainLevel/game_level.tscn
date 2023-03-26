@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cnxeh0xn7cfxh"]
+[gd_scene load_steps=22 format=3 uid="uid://cnxeh0xn7cfxh"]
 
 [ext_resource type="Script" path="res://gameLevels/mainLevel/game_level.gd" id="1_mh83j"]
 [ext_resource type="PackedScene" uid="uid://rsl43nlh0qrc" path="res://character/player.tscn" id="2_a0jd0"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dpddi8nvsbcy3" path="res://NPC/cows/cow/cow.tscn" id="10_tbavi"]
 [ext_resource type="PackedScene" uid="uid://c1hkcomwcy5ra" path="res://NPC/cows/cowArmed/cowArmed.tscn" id="11_tnb3c"]
 [ext_resource type="PackedScene" uid="uid://bxfa1ad3u6xv7" path="res://utils/porkchop/porkchop.tscn" id="12_bplcg"]
+[ext_resource type="PackedScene" uid="uid://6t4yqhuac60b" path="res://utils/tools/axe/axe.tscn" id="13_bct88"]
+[ext_resource type="PackedScene" uid="uid://b3hlfdicn6pmq" path="res://utils/tools/hoe/hoe.tscn" id="14_tnovc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7y6o0"]
 texture = ExtResource("3_pdlpj")
@@ -788,3 +790,9 @@ position = Vector2(408, 315)
 
 [node name="porkchop2" parent="." instance=ExtResource("12_bplcg")]
 position = Vector2(404, 309)
+
+[node name="axe" parent="." instance=ExtResource("13_bct88")]
+position = Vector2(484, 329)
+
+[node name="hoe" parent="." instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)

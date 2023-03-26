@@ -82,8 +82,8 @@ func animationForTools():
 	animation_tree.set("parameters/conditions/IsMoving", false);
 	animation_tree.set("parameters/conditions/isIdle", false);
 	animation_tree.set("parameters/conditions/useTool", true);
-	animation_tree.set("parameters/UseTool/UseTool/blend_position", playerData.equipedTool);	
-	animation_tree.set("parameters/UseTool/UseTool/"+str(playerData.equipedTool)+"/blend_position", playerData.lookingDirection);	
+	animation_tree.set("parameters/UseTool/UseTool/blend_position", playerData.toolbarItems[playerData.equipedTool].get("Tool_id"));	
+	animation_tree.set("parameters/UseTool/UseTool/"+str(playerData.toolbarItems[playerData.equipedTool].get("Tool_id"))+"/blend_position", playerData.lookingDirection);	
 	
 	pass;
 
@@ -136,16 +136,17 @@ func useTool():
 	print(playerData.toolbarItems[playerData.equipedTool] )
 	if playerData.toolbarItems[playerData.equipedTool] == null:
 		return;
-		
-	match playerData.equipedTool:
-		playerData.items.Axe:
+	print(playerData.toolbarItems[playerData.equipedTool].get("Item_id"), " ", playerData.globals.items.Axe)
+	match playerData.toolbarItems[playerData.equipedTool].get("Item_id"):
+		playerData.globals.items.Axe:
 			blockPlayerMovement();
 			update_animation("toolUse", Vector2.ZERO);
 			var collider = getColliderFromVector(playerData.lookingDirection);
 			if (collider != null && collider.is_in_group("tool_axe_action_group")):
 				get_tree().call_group("tool_axe_action_group", "_on_player_tool_action",collider)
 				pass;
-		playerData.items.Hoe:
+		playerData.globals.items.Hoe:
+			print("dsad")
 			blockPlayerMovement();
 			update_animation("toolUse", Vector2.ZERO);
 			pass;

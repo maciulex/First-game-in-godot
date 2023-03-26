@@ -1,5 +1,8 @@
 extends Node
-enum items {Axe, Hoe};
+
+@onready var globals = get_node("/root/GlobalData")
+
+
 
 @export var health : int = 100;
 @export var movementBlock : bool = false;
@@ -10,13 +13,19 @@ var cordsBeforeEntringBuilding = Vector2(0,0);
 
 
 #toolbar
-var toolbarItems = [items.Axe, items.Hoe];
+@onready var toolbarItems = [];
 var equipedTool = 0;
 
 var itemsOnGround : Array = [];
 
 func _ready():
+	var axe = preload("res://utils/tools/axe/axe.tscn").instantiate();
+	var hoe = preload("res://utils/tools/hoe/hoe.tscn").instantiate();
+	axe.init(globals)
+	hoe.init(globals)
 	toolbarItems.resize(5);
+	toolbarItems[0] = axe;
+	toolbarItems[1] = hoe;
 
 
 

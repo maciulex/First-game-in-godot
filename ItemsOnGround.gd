@@ -18,7 +18,6 @@ func updateItemList(item, action):
 			playerData.itemsOnGround.append(item)
 		"remove":
 			playerData.itemsOnGround.erase(item);
-					
 	updateList();
 	pass;
 
