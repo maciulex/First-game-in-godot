@@ -785,6 +785,15 @@ position = Vector2(408, 315)
 [node name="porkchop2" parent="Items" instance=ExtResource("12_bplcg")]
 position = Vector2(404, 309)
 
+[node name="porkchop3" parent="Items" instance=ExtResource("12_bplcg")]
+position = Vector2(400, 304)
+
+[node name="porkchop4" parent="Items" instance=ExtResource("12_bplcg")]
+position = Vector2(397, 310)
+
+[node name="porkchop5" parent="Items" instance=ExtResource("12_bplcg")]
+position = Vector2(401, 317)
+
 [node name="axe" parent="Items" instance=ExtResource("13_bct88")]
 position = Vector2(484, 329)
 

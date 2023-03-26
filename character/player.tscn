@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://character/player.gd" id="1_mn1hc"]
 [ext_resource type="Texture2D" uid="uid://cn4x7jsytg3s3" path="res://art/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="2_401qo"]
-[ext_resource type="PackedScene" uid="uid://bgjcogstv03p2" path="res://control.tscn" id="3_crd1h"]
+[ext_resource type="PackedScene" uid="uid://3isu57on7sb3" path="res://interface/control.tscn" id="3_crd1h"]
 [ext_resource type="Texture2D" uid="uid://dxin64diqougr" path="res://art/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Actions.png" id="4_wqlyb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ofvq"]
@@ -903,7 +903,6 @@ size = Vector2(8, 16)
 
 [node name="Player" type="CharacterBody2D" groups=["CowEnemy"]]
 z_index = 500
-position = Vector2(240, 135)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_mn1hc")

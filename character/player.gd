@@ -41,6 +41,12 @@ func _ready():
 	];
 
 func dropItem():
+	if (playerData.itemsOnGround.size() == 8 || playerData.toolbarItems[playerData.equipedTool] == null):
+		return;
+	playerData.toolbarItems[playerData.equipedTool].position = (position - Vector2(25,-25));
+	get_tree().get_root().add_child(playerData.toolbarItems[playerData.equipedTool].duplicate());
+	playerData.toolbarItems[(playerData.equipedTool)] = null;
+	itemPicked.emit(playerData.equipedTool);
 	pass;
 
 func fastPickupFirstItem():
@@ -51,19 +57,21 @@ func _physics_process(delta):
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
 	)
-	if (playerData.movementBlock):
-		return;	
 	
 	var useAction = Input.get_action_strength("space");
 	var itemDrop = Input.get_action_strength("q");
-	var fastPickUpItem = Input.get_action_strength("e");
+	var action = Input.get_action_strength("e");
 	
+	if (itemDrop > 0):
+		dropItem();
 	if (useAction && !playerData.toolCoolDown):
 		useFromToolBar();
-	else:
-		velocity = input_direction * movement_speed;
-		update_animation("movement",input_direction)
-		move_and_slide();
+	if (playerData.movementBlock):
+		return;	
+		
+	velocity = input_direction * movement_speed;
+	update_animation("movement",input_direction)
+	move_and_slide();
 
 
 func animationForWalkOrIdle(move_input : Vector2):
@@ -135,7 +143,6 @@ func blockPlayerMovement():
 func useFromToolBar():
 	if playerData.toolbarItems[playerData.equipedTool] == null:
 		return;
-	print(playerData.toolbarItems[playerData.equipedTool].get("Item_type"));
 	match playerData.toolbarItems[playerData.equipedTool].get("Item_type"):
 		playerData.globals.itemType.tool:
 			useTool();
@@ -145,7 +152,6 @@ func useFromToolBar():
 func useItem():
 	$Timer.start(itemCoolDownTime);
 	playerData.toolCoolDown = true;
-	print("Use Item")
 	match playerData.toolbarItems[playerData.equipedTool].get("Item_id"):
 		playerData.globals.items.Porkchop:
 			pass;
@@ -213,7 +219,6 @@ func findNotFullInventoryStack(object) -> int:
 func addItemToInventoryStack(invIndex, amount):
 	playerData.toolbarItems[invIndex].Amount += amount;
 	itemPicked.emit(invIndex);	
-	print("done");
 	pass;
 
 func addNewItemToInventoryFromGround(itemGroundIndex):
@@ -230,7 +235,6 @@ func freeItemOnGround(itemGroundIndex):
 
 func pickUpItemToInventory(onGroundIndex):
 	var stackSpace = findNotFullInventoryStack(playerData.itemsOnGround[onGroundIndex]);
-	print(stackSpace);
 	if (stackSpace != -1):
 		addItemToInventoryStack(stackSpace, playerData.itemsOnGround[onGroundIndex].get("Amount"));
 		freeItemOnGround(onGroundIndex);	

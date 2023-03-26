@@ -6,4 +6,5 @@ func _ready():
 	pass;
 	
 func exitBuilding(val):
-	get_tree().change_scene_to_file("res://game_level.tscn");
+	print("exiting");
+	get_tree().change_scene_to_file("res://gameLevels/mainLevel/game_level.tscn");

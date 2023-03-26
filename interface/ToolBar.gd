@@ -29,7 +29,9 @@ func getSprite(textureName):
 
 func loadSpriteForToolBarIndex(i):
 	var sprite = getSprite(playerData.toolbarItems[i]);
-	if (sprite == null): return;
+	if (sprite == null): 
+		toolbarBoxes[i].get_node("spriteContainer").get_children()[0].texture = null;
+		return;
 	toolbarBoxes[i].get_node("spriteContainer").get_children()[0].queue_free();
 	toolbarBoxes[i].get_node("spriteContainer").add_child(sprite);
 
