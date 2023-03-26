@@ -1,0 +1,199 @@
+[gd_scene load_steps=10 format=3 uid="uid://3isu57on7sb3"]
+
+[ext_resource type="Script" path="res://interface/control.gd" id="1_l00ot"]
+[ext_resource type="LabelSettings" uid="uid://b272hkjwiknw6" path="res://art/control.tres" id="2_bpn00"]
+[ext_resource type="Script" path="res://interface/HPValLabel.gd" id="3_623ak"]
+[ext_resource type="Script" path="res://interface/ToolBar.gd" id="4_3rqbo"]
+[ext_resource type="Texture2D" uid="uid://dxc7ehgbdqyf8" path="res://art/unselected_item.png" id="5_3xw46"]
+[ext_resource type="Texture2D" uid="uid://be3vxlndmp7o" path="res://art/selected_item.png" id="6_wxbpq"]
+[ext_resource type="Texture2D" uid="uid://02pvfy4scowm" path="res://art/Sprout Lands - Sprites - Basic pack/icons/axe.png" id="7_i2v50"]
+[ext_resource type="Texture2D" uid="uid://gsbfnt1wnakd" path="res://art/Sprout Lands - Sprites - Basic pack/icons/hoe.png" id="8_r7etd"]
+[ext_resource type="Script" path="res://ItemsOnGround.gd" id="9_id6j1"]
+
+[node name="Control" type="Control"]
+z_index = 999
+texture_filter = 6
+layout_mode = 3
+anchor_right = 0.461
+anchor_bottom = 0.563
+offset_right = -436.12
+offset_bottom = -333.04
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l00ot")
+
+[node name="GoodGameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 292.0
+offset_bottom = 28.0
+scale = Vector2(0.1, 0.1)
+text = "GAME GOOD I ADMIT YES VERY GOOD"
+label_settings = ExtResource("2_bpn00")
+
+[node name="HP label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 23.0
+offset_right = 42.0
+offset_bottom = 49.0
+scale = Vector2(0.1, 0.1)
+text = "HP: "
+label_settings = ExtResource("2_bpn00")
+
+[node name="HPValLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 23.0
+offset_right = 72.0
+offset_bottom = 49.0
+scale = Vector2(0.1, 0.1)
+text = "3"
+label_settings = ExtResource("2_bpn00")
+script = ExtResource("3_623ak")
+
+[node name="ToolBar" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 51.0
+offset_top = -1.0
+offset_right = 384.0
+offset_bottom = 274.0
+script = ExtResource("4_3rqbo")
+
+[node name="UnselectedItem5" type="Sprite2D" parent="ToolBar"]
+position = Vector2(239, 261)
+scale = Vector2(0.377778, 0.333334)
+texture = ExtResource("5_3xw46")
+
+[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem5"]
+visible = false
+position = Vector2(-6.10352e-05, 6.10352e-05)
+scale = Vector2(0.852941, 0.933333)
+texture = ExtResource("6_wxbpq")
+
+[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem5"]
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem5/spriteContainer"]
+position = Vector2(-0.000244141, 5.99976)
+scale = Vector2(0.28171, 0.279166)
+
+[node name="UnselectedItem4" type="Sprite2D" parent="ToolBar"]
+position = Vector2(215, 261)
+scale = Vector2(0.377778, 0.333334)
+texture = ExtResource("5_3xw46")
+
+[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem4"]
+visible = false
+position = Vector2(2.64703, 6.10352e-05)
+scale = Vector2(0.852941, 0.933333)
+texture = ExtResource("6_wxbpq")
+
+[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem4"]
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem4/spriteContainer"]
+position = Vector2(-0.000244141, 5.99976)
+scale = Vector2(0.28171, 0.279166)
+
+[node name="UnselectedItem3" type="Sprite2D" parent="ToolBar"]
+position = Vector2(191, 261)
+scale = Vector2(0.377778, 0.333334)
+texture = ExtResource("5_3xw46")
+
+[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem3"]
+visible = false
+position = Vector2(2.64703, 6.10352e-05)
+scale = Vector2(0.852941, 0.933333)
+texture = ExtResource("6_wxbpq")
+
+[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem3"]
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem3/spriteContainer"]
+position = Vector2(-0.000244141, 5.99976)
+scale = Vector2(0.28171, 0.279166)
+
+[node name="UnselectedItem2" type="Sprite2D" parent="ToolBar"]
+position = Vector2(167, 261)
+scale = Vector2(0.377778, 0.333334)
+texture = ExtResource("5_3xw46")
+
+[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem2"]
+visible = false
+position = Vector2(2.64709, 0)
+scale = Vector2(0.852941, 0.933333)
+texture = ExtResource("6_wxbpq")
+
+[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem2"]
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem2/spriteContainer"]
+position = Vector2(-0.000244141, 5.99976)
+scale = Vector2(0.28171, 0.279166)
+
+[node name="UnselectedItem1" type="Sprite2D" parent="ToolBar"]
+position = Vector2(143, 261)
+scale = Vector2(0.377778, 0.333334)
+texture = ExtResource("5_3xw46")
+
+[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem1"]
+visible = false
+position = Vector2(2.64709, 0)
+scale = Vector2(0.85294, 0.933334)
+texture = ExtResource("6_wxbpq")
+
+[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem1"]
+
+[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem1/spriteContainer"]
+position = Vector2(-0.000244141, 5.99976)
+scale = Vector2(0.28171, 0.279166)
+
+[node name="icons" type="Node2D" parent="ToolBar"]
+visible = false
+
+[node name="axe" type="Sprite2D" parent="ToolBar/icons"]
+position = Vector2(0, 1)
+scale = Vector2(0.642857, 0.642857)
+texture = ExtResource("7_i2v50")
+
+[node name="hoe" type="Sprite2D" parent="ToolBar/icons"]
+position = Vector2(-9.53674e-07, 1)
+scale = Vector2(0.875, 0.828125)
+texture = ExtResource("8_r7etd")
+
+[node name="ItemsOnGround" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 121.0
+offset_right = 119.0
+offset_bottom = 269.0
+script = ExtResource("9_id6j1")
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="ItemsOnGround"]
+layout_mode = 2
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 588.0
+offset_bottom = 119.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 80
+text = "Itemy na ziemi:"
+
+[node name="VScrollBar" type="VScrollBar" parent="ItemsOnGround"]
+visible = false
+layout_mode = 0
+offset_left = 66.0
+offset_top = 15.0
+offset_right = 74.0
+offset_bottom = 124.0
+
+[node name="ItemList" type="ItemList" parent="ItemsOnGround"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 17.0
+offset_right = 328.0
+offset_bottom = 572.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/font_size = 39
+
+[connection signal="itemClicked" from="ItemsOnGround" to="." method="_on_items_on_ground_item_clicked"]
+[connection signal="item_activated" from="ItemsOnGround/ItemList" to="ItemsOnGround" method="_on_item_list_item_activated"]

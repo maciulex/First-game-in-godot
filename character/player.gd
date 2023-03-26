@@ -37,7 +37,13 @@ func _ready():
 			$RayCastsContainer/RayCast2D6#top-right
 		]
 	];
-	
+
+func dropItem():
+	pass;
+
+func fastPickupFirstItem():
+	pass;
+
 func _physics_process(delta):
 	var input_direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
@@ -47,6 +53,9 @@ func _physics_process(delta):
 		return;	
 	
 	var toolUse = Input.get_action_strength("space");
+	var itemDrop = Input.get_action_strength("q");
+	var fastPickUpItem = Input.get_action_strength("e");
+	
 	if (toolUse && !playerData.toolCoolDown):
 		$Timer.start(toolCoolDownTime);
 		playerData.toolCoolDown = true;
@@ -84,6 +93,8 @@ func update_animation(actionType : String, vector : Vector2):
 			animationForWalkOrIdle(vector);
 		"toolUse":
 			animationForTools();
+		"item":
+			pass;
 
 func _on_area_2d_area_entered(area):
 	match area.name:
@@ -127,14 +138,14 @@ func useTool():
 		return;
 		
 	match playerData.equipedTool:
-		playerData.tools.Axe:
+		playerData.items.Axe:
 			blockPlayerMovement();
 			update_animation("toolUse", Vector2.ZERO);
 			var collider = getColliderFromVector(playerData.lookingDirection);
 			if (collider != null && collider.is_in_group("tool_axe_action_group")):
 				get_tree().call_group("tool_axe_action_group", "_on_player_tool_action",collider)
 				pass;
-		playerData.tools.Hoe:
+		playerData.items.Hoe:
 			blockPlayerMovement();
 			update_animation("toolUse", Vector2.ZERO);
 			pass;
