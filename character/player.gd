@@ -41,11 +41,11 @@ func _ready():
 	];
 
 func dropItem():
-	if (playerData.itemsOnGround.size() == 8 || playerData.toolbarItems[playerData.equipedTool] == null):
+	if (playerData.itemsOnGround.size() == 8 || playerData.Items[playerData.equipedTool] == null):
 		return;
-	playerData.toolbarItems[playerData.equipedTool].position = (position - Vector2(25,-25));
-	get_tree().get_root().add_child(playerData.toolbarItems[playerData.equipedTool].duplicate());
-	playerData.toolbarItems[(playerData.equipedTool)] = null;
+	playerData.Items[playerData.equipedTool].position = (position - Vector2(25,-25));
+	get_tree().get_root().add_child(playerData.Items[playerData.equipedTool].duplicate());
+	playerData.Items[(playerData.equipedTool)] = null;
 	itemPicked.emit(playerData.equipedTool);
 	pass;
 
@@ -151,9 +151,9 @@ func blockPlayerMovement():
 	update_animation("movement", Vector2.ZERO);
 
 func useFromToolBar():
-	if playerData.toolbarItems[playerData.equipedTool] == null:
+	if playerData.Items[playerData.equipedTool] == null:
 		return;
-	match playerData.toolbarItems[playerData.equipedTool].Item_type:
+	match playerData.Items[playerData.equipedTool].Item_type:
 		playerData.globals.itemType.tool:
 			useTool();
 		playerData.globals.itemType.item:
@@ -162,23 +162,23 @@ func useFromToolBar():
 func useItem():
 	$Timer.start(itemCoolDownTime);
 	playerData.toolCoolDown = true;
-	match playerData.toolbarItems[playerData.equipedTool].Item_id:
-		playerData.globals.items.Porkchop:
+	match playerData.Items[playerData.equipedTool].Item_id:
+		playerData.globals.Items.Porkchop:
 			pass;
 	pass;	
 	
 func useTool():
 	$Timer.start(toolCoolDownTime);
 	playerData.toolCoolDown = true;
-	match playerData.toolbarItems[playerData.equipedTool].Item_id:
-		playerData.globals.items.Axe:
+	match playerData.Items[playerData.equipedTool].Item_id:
+		playerData.globals.Items.Axe:
 			blockPlayerMovement();
 			update_animation("toolUse", Vector2.ZERO);
 			var collider = getColliderFromVector(playerData.lookingDirection);
 			if (collider != null && collider.is_in_group("tool_axe_action_group")):
 				get_tree().call_group("tool_axe_action_group", "_on_player_tool_action",collider)
 				pass;
-		playerData.globals.items.Hoe:
+		playerData.globals.Items.Hoe:
 			blockPlayerMovement();
 			update_animation("toolUse", Vector2.ZERO);
 			pass;
@@ -214,20 +214,20 @@ func _on_timer_timeout():
 
 
 func freeInventorySpace() -> int:
-	return playerData.toolbarItems.find(null);
+	return playerData.Items.find(null);
 
 func findNotFullInventoryStack(object) -> int:
 	for	i in range(5):
-		if (playerData.toolbarItems[i] == null):
+		if (playerData.Items[i] == null):
 			continue;
-		if (playerData.toolbarItems[i].get("Item_id") != object.get("Item_id")):
+		if (playerData.Items[i].get("Item_id") != object.get("Item_id")):
 			continue;
-		if (playerData.toolbarItems[i].get("MaksStackSize") > playerData.toolbarItems[i].get("Amount") + object.get("Amount")):
+		if (playerData.Items[i].get("MaksStackSize") > playerData.Items[i].get("Amount") + object.get("Amount")):
 			return i;
 	return -1;
 
 func addItemToInventoryStack(invIndex, amount):
-	playerData.toolbarItems[invIndex].Amount += amount;
+	playerData.Items[invIndex].Amount += amount;
 	itemPicked.emit(invIndex);	
 	pass;
 
@@ -235,7 +235,7 @@ func addNewItemToInventoryFromGround(itemGroundIndex):
 	var invSpace = freeInventorySpace();
 	if invSpace == -1:
 		return;
-	playerData.toolbarItems[invSpace] = playerData.itemsOnGround[itemGroundIndex].duplicate();
+	playerData.Items[invSpace] = playerData.itemsOnGround[itemGroundIndex].duplicate();
 	freeItemOnGround(itemGroundIndex);
 	itemPicked.emit(invSpace);
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cnxeh0xn7cfxh"]
+[gd_scene load_steps=24 format=3 uid="uid://cnxeh0xn7cfxh"]
 
 [ext_resource type="Script" path="res://gameLevels/mainLevel/game_level.gd" id="1_mh83j"]
 [ext_resource type="PackedScene" uid="uid://rsl43nlh0qrc" path="res://character/player.tscn" id="2_a0jd0"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://6t4yqhuac60b" path="res://utils/tools/axe/axe.tscn" id="13_bct88"]
 [ext_resource type="PackedScene" uid="uid://b3hlfdicn6pmq" path="res://utils/tools/hoe/hoe.tscn" id="14_tnovc"]
 [ext_resource type="PackedScene" uid="uid://v163y6wi8556" path="res://utils/furniture/furnace/furnace.tscn" id="15_2yh8w"]
+[ext_resource type="PackedScene" uid="uid://dgl5i3awvde0u" path="res://utils/warship/warship.tscn" id="16_qbp2a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7y6o0"]
 texture = ExtResource("3_pdlpj")
@@ -608,15 +609,19 @@ texture = ExtResource("7_ml2x6")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i5kg7"]
 texture = ExtResource("8_crf74")
@@ -801,6 +806,185 @@ position = Vector2(484, 329)
 [node name="hoe" parent="Items" instance=ExtResource("14_tnovc")]
 position = Vector2(469, 365)
 
+[node name="Node2D" type="Node2D" parent="Items"]
+
+[node name="hoe30" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe31" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe32" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe33" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe34" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe35" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe36" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe37" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe38" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe39" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe40" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe41" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe42" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe43" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe44" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe45" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe46" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe47" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe48" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe49" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe50" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe51" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe52" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe53" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe54" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe55" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe56" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe57" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe58" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe59" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe60" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe61" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe62" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe63" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe64" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe65" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe66" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe67" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe68" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe69" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe70" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe71" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe72" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe73" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe74" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe75" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe76" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe77" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe78" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe79" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe80" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe81" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe82" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe83" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe84" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe85" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe86" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe87" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
+[node name="hoe88" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
+position = Vector2(469, 365)
+
 [node name="Enemys" type="Node2D" parent="."]
 
 [node name="cowArmed" parent="Enemys" instance=ExtResource("11_tnb3c")]
@@ -813,3 +997,6 @@ position = Vector2(444, 405)
 
 [node name="furnace" parent="." instance=ExtResource("15_2yh8w")]
 position = Vector2(426, 286)
+
+[node name="warship" parent="." instance=ExtResource("16_qbp2a")]
+position = Vector2(-51, 391)

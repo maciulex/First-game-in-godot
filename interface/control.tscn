@@ -1,13 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://3isu57on7sb3"]
+[gd_scene load_steps=7 format=3 uid="uid://3isu57on7sb3"]
 
 [ext_resource type="Script" path="res://interface/control.gd" id="1_l00ot"]
 [ext_resource type="LabelSettings" uid="uid://b272hkjwiknw6" path="res://art/control.tres" id="2_bpn00"]
 [ext_resource type="Script" path="res://interface/HPValLabel.gd" id="3_623ak"]
-[ext_resource type="Script" path="res://interface/ToolBar.gd" id="4_3rqbo"]
-[ext_resource type="Texture2D" uid="uid://dxc7ehgbdqyf8" path="res://art/unselected_item.png" id="5_3xw46"]
-[ext_resource type="Texture2D" uid="uid://be3vxlndmp7o" path="res://art/selected_item.png" id="6_wxbpq"]
-[ext_resource type="Texture2D" uid="uid://02pvfy4scowm" path="res://art/Sprout Lands - Sprites - Basic pack/icons/axe.png" id="7_i2v50"]
-[ext_resource type="Texture2D" uid="uid://gsbfnt1wnakd" path="res://art/Sprout Lands - Sprites - Basic pack/icons/hoe.png" id="8_r7etd"]
+[ext_resource type="PackedScene" uid="uid://bq2l0c2ycrs0m" path="res://interface/itemBox.tscn" id="5_etfrn"]
+[ext_resource type="Script" path="res://interface/Inventory.gd" id="5_xpikk"]
 [ext_resource type="Script" path="res://ItemsOnGround.gd" id="9_id6j1"]
 
 [node name="Control" type="Control"]
@@ -53,161 +50,13 @@ text = "3"
 label_settings = ExtResource("2_bpn00")
 script = ExtResource("3_623ak")
 
-[node name="ToolBar" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 51.0
-offset_top = -1.0
-offset_right = 384.0
-offset_bottom = 274.0
-script = ExtResource("4_3rqbo")
-metadata/_edit_lock_ = true
-
-[node name="UnselectedItem5" type="Sprite2D" parent="ToolBar"]
-position = Vector2(239, 261)
-scale = Vector2(0.377778, 0.333334)
-texture = ExtResource("5_3xw46")
-
-[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem5"]
-visible = false
-position = Vector2(-6.10352e-05, 6.10352e-05)
-scale = Vector2(0.852941, 0.933333)
-texture = ExtResource("6_wxbpq")
-
-[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem5"]
-
-[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem5/spriteContainer"]
-position = Vector2(-0.000244141, 5.99976)
-scale = Vector2(0.28171, 0.279166)
-
-[node name="Amount" type="Label" parent="ToolBar/UnselectedItem5"]
-offset_left = 2.64709
-offset_top = 9.0
-offset_right = 26.6471
-offset_bottom = 35.0
-text = "1"
-horizontal_alignment = 2
-
-[node name="UnselectedItem4" type="Sprite2D" parent="ToolBar"]
-position = Vector2(215, 261)
-scale = Vector2(0.377778, 0.333334)
-texture = ExtResource("5_3xw46")
-
-[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem4"]
-visible = false
-position = Vector2(2.64703, 6.10352e-05)
-scale = Vector2(0.852941, 0.933333)
-texture = ExtResource("6_wxbpq")
-
-[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem4"]
-
-[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem4/spriteContainer"]
-position = Vector2(-0.000244141, 5.99976)
-scale = Vector2(0.28171, 0.279166)
-
-[node name="Amount" type="Label" parent="ToolBar/UnselectedItem4"]
-offset_left = 2.64709
-offset_top = 9.0
-offset_right = 26.6471
-offset_bottom = 35.0
-text = "1"
-horizontal_alignment = 2
-
-[node name="UnselectedItem3" type="Sprite2D" parent="ToolBar"]
-position = Vector2(191, 261)
-scale = Vector2(0.377778, 0.333334)
-texture = ExtResource("5_3xw46")
-
-[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem3"]
-visible = false
-position = Vector2(2.64703, 6.10352e-05)
-scale = Vector2(0.852941, 0.933333)
-texture = ExtResource("6_wxbpq")
-
-[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem3"]
-
-[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem3/spriteContainer"]
-position = Vector2(-0.000244141, 5.99976)
-scale = Vector2(0.28171, 0.279166)
-
-[node name="Amount" type="Label" parent="ToolBar/UnselectedItem3"]
-offset_left = 2.64709
-offset_top = 9.0
-offset_right = 26.6471
-offset_bottom = 35.0
-text = "1"
-horizontal_alignment = 2
-
-[node name="UnselectedItem2" type="Sprite2D" parent="ToolBar"]
-position = Vector2(167, 261)
-scale = Vector2(0.377778, 0.333334)
-texture = ExtResource("5_3xw46")
-
-[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem2"]
-visible = false
-position = Vector2(2.64709, 0)
-scale = Vector2(0.852941, 0.933333)
-texture = ExtResource("6_wxbpq")
-
-[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem2"]
-
-[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem2/spriteContainer"]
-position = Vector2(-0.000244141, 5.99976)
-scale = Vector2(0.28171, 0.279166)
-
-[node name="Amount" type="Label" parent="ToolBar/UnselectedItem2"]
-offset_left = 2.64709
-offset_top = 9.0
-offset_right = 26.6471
-offset_bottom = 35.0
-text = "1"
-horizontal_alignment = 2
-
-[node name="UnselectedItem1" type="Sprite2D" parent="ToolBar"]
-position = Vector2(143, 261)
-scale = Vector2(0.377778, 0.333334)
-texture = ExtResource("5_3xw46")
-
-[node name="SelectedItem" type="Sprite2D" parent="ToolBar/UnselectedItem1"]
-visible = false
-position = Vector2(2.64709, 0)
-scale = Vector2(0.85294, 0.933334)
-texture = ExtResource("6_wxbpq")
-
-[node name="spriteContainer" type="Node2D" parent="ToolBar/UnselectedItem1"]
-
-[node name="Sprite" type="Sprite2D" parent="ToolBar/UnselectedItem1/spriteContainer"]
-position = Vector2(-0.000244141, 5.99976)
-scale = Vector2(0.28171, 0.279166)
-
-[node name="Amount" type="Label" parent="ToolBar/UnselectedItem1"]
-offset_left = 2.64709
-offset_top = 9.0
-offset_right = 26.6471
-offset_bottom = 35.0
-text = "1"
-horizontal_alignment = 2
-
-[node name="icons" type="Node2D" parent="ToolBar"]
-visible = false
-
-[node name="axe" type="Sprite2D" parent="ToolBar/icons"]
-position = Vector2(0, 1)
-scale = Vector2(0.642857, 0.642857)
-texture = ExtResource("7_i2v50")
-
-[node name="hoe" type="Sprite2D" parent="ToolBar/icons"]
-position = Vector2(-9.53674e-07, 1)
-scale = Vector2(0.875, 0.828125)
-texture = ExtResource("8_r7etd")
-
 [node name="ItemsOnGround" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 3.0
-offset_top = 121.0
+offset_top = 193.0
 offset_right = 119.0
-offset_bottom = 269.0
+offset_bottom = 341.0
 script = ExtResource("9_id6j1")
-metadata/_edit_lock_ = true
 
 [node name="Title" type="Label" parent="ItemsOnGround"]
 layout_mode = 2
@@ -232,7 +81,7 @@ layout_mode = 0
 offset_left = 3.0
 offset_top = 17.0
 offset_right = 328.0
-offset_bottom = 572.0
+offset_bottom = 317.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/font_size = 39
 
@@ -242,7 +91,223 @@ offset_left = 73.0
 offset_top = 42.0
 offset_right = 444.0
 offset_bottom = 224.0
+script = ExtResource("5_xpikk")
+
+[node name="MainInventory" type="GridContainer" parent="Inventory"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 65.0
+offset_right = 380.0
+offset_bottom = 261.0
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 21
+columns = 9
 metadata/_edit_lock_ = true
+
+[node name="itemBox6" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox7" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox8" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox9" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox10" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox11" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox12" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox13" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox14" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox15" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox16" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox17" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox18" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox19" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox20" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox21" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox22" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox23" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox24" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox25" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox26" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox27" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox28" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox29" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox30" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox31" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox32" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox33" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox34" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox35" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox36" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox37" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox38" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox39" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox40" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox41" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox42" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox43" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox44" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox45" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox46" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox47" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox48" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox49" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox50" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox51" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox52" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox53" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox54" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox55" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox56" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox57" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox58" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="itemBox59" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 2
+
+[node name="ToolBar" type="Control" parent="Inventory"]
+anchors_preset = 0
+offset_left = -24.0
+offset_top = -35.0
+offset_right = 309.0
+offset_bottom = 240.0
+metadata/_edit_lock_ = true
+
+[node name="itemBox1" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
+layout_mode = 1
+offset_left = 140.0
+offset_top = 241.0
+offset_right = -193.0
+offset_bottom = -34.0
+
+[node name="itemBox2" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
+layout_mode = 1
+offset_left = 164.0
+offset_top = 241.0
+offset_right = -169.0
+offset_bottom = -34.0
+
+[node name="itemBox3" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
+layout_mode = 1
+offset_left = 188.0
+offset_top = 241.0
+offset_right = -145.0
+offset_bottom = -34.0
+
+[node name="itemBox4" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
+layout_mode = 1
+offset_left = 212.0
+offset_top = 241.0
+offset_right = -121.0
+offset_bottom = -34.0
+
+[node name="itemBox5" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
+layout_mode = 1
+offset_left = 236.0
+offset_top = 241.0
+offset_right = -97.0
+offset_bottom = -34.0
 
 [connection signal="itemClicked" from="ItemsOnGround" to="." method="_on_items_on_ground_item_clicked"]
 [connection signal="item_activated" from="ItemsOnGround/ItemList" to="ItemsOnGround" method="_on_item_list_item_activated"]

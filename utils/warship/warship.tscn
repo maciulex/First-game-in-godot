@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgl5i3awvde0u"]
+
+[ext_resource type="Texture2D" uid="uid://dv2ay6u5fa175" path="res://art/warship.png" id="1_o4j5j"]
+
+[node name="warship" type="Node2D"]
+
+[node name="Warship" type="Sprite2D" parent="."]
+position = Vector2(2.99998, -8)
+scale = Vector2(0.0385417, 0.0467655)
+texture = ExtResource("1_o4j5j")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+polygon = PackedVector2Array(-2, 4, 45, 4, 48, -4, 36, -3, 34, -4, 27, -5, 19, -7, 13, -10, 9, -15, 5, -12, -5, -10, -19, -6, -28, -4, -33, -4, -42, -3, -39, 3, -29, 4, -23, 4)

@@ -13,7 +13,7 @@ var cordsBeforeEntringBuilding = Vector2(0,0);
 
 
 #toolbar
-@onready var toolbarItems = [];
+@onready var Items = [];
 var equipedTool = 0;
 
 var itemsOnGround : Array = [];
@@ -23,9 +23,9 @@ func _ready():
 	var hoe = preload("res://utils/tools/hoe/hoe.tscn").instantiate();
 	axe.init(globals)
 	hoe.init(globals)
-	toolbarItems.resize(5);
-	toolbarItems[0] = axe;
-	toolbarItems[1] = hoe;
+	Items.resize(59);
+	Items[0] = axe;
+	Items[1] = hoe;
 
 
 
