@@ -61,10 +61,13 @@ func _physics_process(delta):
 	var useAction = Input.get_action_strength("space");
 	var itemDrop = Input.get_action_strength("q");
 	var action = Input.get_action_strength("e");
-	if (action > 0):
-		actionGroup();
-	elif (itemDrop > 0):
-		dropItem();
+	
+	if (!playerData.actionLock):
+		if (action > 0):
+			actionGroup();
+		elif (itemDrop > 0):
+			dropItem();
+		
 	if (useAction && !playerData.toolCoolDown):
 		useFromToolBar();
 	if (playerData.movementBlock):
@@ -73,15 +76,41 @@ func _physics_process(delta):
 	velocity = input_direction * movement_speed;
 	update_animation("movement",input_direction)
 	move_and_slide();
+	
+func closeStorageTypeObject():
+	blockPlayerActionForTime(0.1);
+	unblockPlayerMovement();
+	
+func openStorageTypeObject():
+	blockPlayerMovement();
+	blockPlayerActionForTime(0.1);
+
+func blockPlayerActionForTime(time: float = 1):
+	$actionLock.start(time)
+	playerData.actionLock = true;
+
+func externalInventoryHandler(x):
+	print("x: ", x)
 
 func actionGroup():
+	if (playerData.activeObject != null):
+		playerData.activeObject.clickAction();
+		closeStorageTypeObject();
+		playerData.activeObject = null;
+		return;
 	var object = getColliderFromVector(playerData.lookingDirection);
 	if (object == null):
 		return;
 	if "PrimaryName" in object:
 		match object.PrimaryName:
 			"Furnace":
-				print("fururu")
+				object.clickAction();
+				openStorageTypeObject();
+				object.connect("boxClicked", externalInventoryHandler)
+				playerData.activeObject = (object);
+
+						
+				
 
 
 func animationForWalkOrIdle(move_input : Vector2):
@@ -144,11 +173,15 @@ func getColliderFromVector(vector : Vector2):
 		-1:
 			return KnockbackRays[1][0].get_collider();
 	return null;
-	
+
+func unblockPlayerMovement():
+	playerData.movementBlock = false;	
 
 func blockPlayerMovement():
 	playerData.movementBlock = true;
 	update_animation("movement", Vector2.ZERO);
+	
+
 
 func useFromToolBar():
 	if playerData.Items[playerData.equipedTool] == null:
@@ -255,3 +288,7 @@ func pickUpItemToInventory(onGroundIndex):
 func _on_control_item_clicked(index):
 	pickUpItemToInventory(index);
 	pass;
+
+
+func _on_action_lock_timeout():
+	playerData.actionLock = false

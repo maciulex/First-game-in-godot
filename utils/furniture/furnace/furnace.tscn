@@ -18,6 +18,7 @@ texture = ExtResource("1_mnr8u")
 shape = SubResource("RectangleShape2D_732hs")
 
 [node name="Control" type="Control" parent="."]
+visible = false
 visibility_layer = 2
 z_index = 999
 layout_mode = 3

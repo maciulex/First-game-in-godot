@@ -1001,6 +1001,8 @@ target_position = Vector2(11, 11)
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="actionLock" type="Timer" parent="."]
+
 [connection signal="itemPicked" from="." to="Control" method="_on_player_item_picked"]
 [connection signal="itemClicked" from="Control" to="." method="_on_control_item_clicked"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
@@ -1008,3 +1010,4 @@ one_shot = true
 [connection signal="area_exited" from="CharacterCollision" to="." method="_on_character_collision_area_exited"]
 [connection signal="body_entered" from="CharacterCollision" to="." method="_on_character_collision_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="actionLock" to="." method="_on_action_lock_timeout"]

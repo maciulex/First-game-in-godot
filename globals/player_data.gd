@@ -6,10 +6,12 @@ extends Node
 @export var health : int = 100;
 @export var movementBlock : bool = false;
 @export var toolCoolDown : bool =  false;
+@export var actionLock : bool =  false;
+
 var lookingDirection : Vector2 = Vector2.ZERO;
 var cordsBeforeEntringBuilding = Vector2(0,0);
 
-
+var activeObject = null;
 
 #toolbar
 @onready var Items = [];
