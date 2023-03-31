@@ -163,7 +163,7 @@ func useItem():
 	$Timer.start(itemCoolDownTime);
 	playerData.toolCoolDown = true;
 	match playerData.Items[playerData.equipedTool].Item_id:
-		playerData.globals.Items.Porkchop:
+		playerData.globals.items.Porkchop:
 			pass;
 	pass;	
 	

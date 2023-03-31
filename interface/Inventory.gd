@@ -69,9 +69,18 @@ func _physics_process(delta):
 		if (Input.get_action_strength(str(i+1)) == 1):
 			selectItemInToolBar(i)
 			
-func inventoryBoxClicked(box):
-	selectItemInToolBar(int(box.lstrip("itemBox"))-1);
-	
+func inventoryBoxClicked(space):
+	space = int(space.lstrip("itemBox"))-1;
+	if (playerData.Items[space] == null && playerData.Items[playerData.equipedTool] != null):
+		swapInventory(space, playerData.equipedTool);
+	selectItemInToolBar(space);
+
+func swapInventory(from, to):
+	var placeHolder = playerData.Items[from];
+	playerData.Items[from] = playerData.Items[to];
+	playerData.Items[to] = placeHolder; 
+	updateToolbarAtIndex(from);
+	updateToolbarAtIndex(to);
 func _ready():
 	for i in range(6,60):
 		InventoryBoxes.append($MainInventory.get_node("itemBox"+str(i)));
