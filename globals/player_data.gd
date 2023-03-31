@@ -3,7 +3,6 @@ extends Node
 @onready var globals = get_node("/root/GlobalData")
 
 
-
 @export var health : int = 100;
 @export var movementBlock : bool = false;
 @export var toolCoolDown : bool =  false;

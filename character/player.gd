@@ -100,8 +100,8 @@ func animationForTools():
 	animation_tree.set("parameters/conditions/IsMoving", false);
 	animation_tree.set("parameters/conditions/isIdle", false);
 	animation_tree.set("parameters/conditions/useTool", true);
-	animation_tree.set("parameters/UseTool/UseTool/blend_position", playerData.toolbarItems[playerData.equipedTool].get("Tool_id"));	
-	animation_tree.set("parameters/UseTool/UseTool/"+str(playerData.toolbarItems[playerData.equipedTool].get("Tool_id"))+"/blend_position", playerData.lookingDirection);	
+	animation_tree.set("parameters/UseTool/UseTool/blend_position", playerData.Items[playerData.equipedTool].get("Tool_id"));	
+	animation_tree.set("parameters/UseTool/UseTool/"+str(playerData.Items[playerData.equipedTool].get("Tool_id"))+"/blend_position", playerData.lookingDirection);	
 	
 	pass;
 
@@ -171,14 +171,14 @@ func useTool():
 	$Timer.start(toolCoolDownTime);
 	playerData.toolCoolDown = true;
 	match playerData.Items[playerData.equipedTool].Item_id:
-		playerData.globals.Items.Axe:
+		playerData.globals.items.Axe:
 			blockPlayerMovement();
 			update_animation("toolUse", Vector2.ZERO);
 			var collider = getColliderFromVector(playerData.lookingDirection);
 			if (collider != null && collider.is_in_group("tool_axe_action_group")):
 				get_tree().call_group("tool_axe_action_group", "_on_player_tool_action",collider)
 				pass;
-		playerData.globals.Items.Hoe:
+		playerData.globals.items.Hoe:
 			blockPlayerMovement();
 			update_animation("toolUse", Vector2.ZERO);
 			pass;

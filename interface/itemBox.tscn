@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq2l0c2ycrs0m"]
+[gd_scene load_steps=9 format=3 uid="uid://bq2l0c2ycrs0m"]
 
 [ext_resource type="Texture2D" uid="uid://dxc7ehgbdqyf8" path="res://art/unselected_item.png" id="1_1gaqs"]
+[ext_resource type="Script" path="res://interface/itemBox.gd" id="1_7mp4t"]
 [ext_resource type="Texture2D" uid="uid://be3vxlndmp7o" path="res://art/selected_item.png" id="2_nc6kc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gvhc6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fl7gg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekq4n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e3wgb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1q7k7"]
 
 [node name="itemBox" type="Control"]
 layout_mode = 3
@@ -14,6 +25,7 @@ offset_right = -1908.0
 offset_bottom = -1069.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7mp4t")
 
 [node name="UnselectedItem" type="Sprite2D" parent="."]
 position = Vector2(13, 12)
@@ -40,3 +52,19 @@ offset_bottom = 35.0
 text = "1"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 25.0
+offset_bottom = 24.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gvhc6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fl7gg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ekq4n")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_e3wgb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1q7k7")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -94,11 +94,12 @@ offset_bottom = 224.0
 script = ExtResource("5_xpikk")
 
 [node name="MainInventory" type="GridContainer" parent="Inventory"]
+visible = false
 layout_mode = 0
 offset_left = 71.0
 offset_top = 65.0
-offset_right = 380.0
-offset_bottom = 261.0
+offset_right = 289.0
+offset_bottom = 195.0
 theme_override_constants/h_separation = 24
 theme_override_constants/v_separation = 21
 columns = 9
@@ -268,46 +269,51 @@ layout_mode = 2
 
 [node name="ToolBar" type="Control" parent="Inventory"]
 anchors_preset = 0
-offset_left = -24.0
-offset_top = -35.0
-offset_right = 309.0
-offset_bottom = 240.0
+offset_left = 120.0
+offset_top = 200.0
+offset_right = 242.0
+offset_bottom = 223.0
 metadata/_edit_lock_ = true
 
 [node name="itemBox1" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
 layout_mode = 1
-offset_left = 140.0
-offset_top = 241.0
-offset_right = -193.0
-offset_bottom = -34.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = -124.0
+offset_bottom = -24.0
+metadata/_edit_lock_ = true
 
 [node name="itemBox2" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
 layout_mode = 1
-offset_left = 164.0
-offset_top = 241.0
-offset_right = -169.0
-offset_bottom = -34.0
+offset_left = 23.0
+offset_top = -1.0
+offset_right = -100.0
+offset_bottom = -24.0
+metadata/_edit_lock_ = true
 
 [node name="itemBox3" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
 layout_mode = 1
-offset_left = 188.0
-offset_top = 241.0
-offset_right = -145.0
-offset_bottom = -34.0
+offset_left = 47.0
+offset_top = -1.0
+offset_right = -76.0
+offset_bottom = -24.0
+metadata/_edit_lock_ = true
 
 [node name="itemBox4" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
 layout_mode = 1
-offset_left = 212.0
-offset_top = 241.0
-offset_right = -121.0
-offset_bottom = -34.0
+offset_left = 71.0
+offset_top = -1.0
+offset_right = -52.0
+offset_bottom = -24.0
+metadata/_edit_lock_ = true
 
 [node name="itemBox5" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
 layout_mode = 1
-offset_left = 236.0
-offset_top = 241.0
-offset_right = -97.0
-offset_bottom = -34.0
+offset_left = 95.0
+offset_top = -1.0
+offset_right = -28.0
+offset_bottom = -24.0
+metadata/_edit_lock_ = true
 
 [connection signal="itemClicked" from="ItemsOnGround" to="." method="_on_items_on_ground_item_clicked"]
 [connection signal="item_activated" from="ItemsOnGround/ItemList" to="ItemsOnGround" method="_on_item_list_item_activated"]

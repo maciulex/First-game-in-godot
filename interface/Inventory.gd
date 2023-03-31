@@ -68,10 +68,20 @@ func _physics_process(delta):
 	for i in range(5):
 		if (Input.get_action_strength(str(i+1)) == 1):
 			selectItemInToolBar(i)
-
+			
+func inventoryBoxClicked(box):
+	selectItemInToolBar(int(box.lstrip("itemBox"))-1);
+	
 func _ready():
 	for i in range(6,60):
 		InventoryBoxes.append($MainInventory.get_node("itemBox"+str(i)));
 	selectItemInToolBar();
 	loadSpritesForToolBar()
 	updateToolBarAmountVals();
+
+
+
+
+
+
+
