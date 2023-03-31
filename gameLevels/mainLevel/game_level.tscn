@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cnxeh0xn7cfxh"]
+[gd_scene load_steps=29 format=3 uid="uid://uqry4sx36oel"]
 
 [ext_resource type="Script" path="res://gameLevels/mainLevel/game_level.gd" id="1_mh83j"]
 [ext_resource type="PackedScene" uid="uid://rsl43nlh0qrc" path="res://character/player.tscn" id="2_a0jd0"]
@@ -13,11 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://b8f3qwdehahd5" path="res://art/Sprout Lands - Sprites - Basic pack/Tilesets/Water_without_collision.png" id="10_2mbcp"]
 [ext_resource type="PackedScene" uid="uid://dpddi8nvsbcy3" path="res://NPC/cows/cow/cow.tscn" id="10_tbavi"]
 [ext_resource type="PackedScene" uid="uid://c1hkcomwcy5ra" path="res://NPC/cows/cowArmed/cowArmed.tscn" id="11_tnb3c"]
-[ext_resource type="PackedScene" uid="uid://bxfa1ad3u6xv7" path="res://utils/porkchop/porkchop.tscn" id="12_bplcg"]
+[ext_resource type="PackedScene" uid="uid://cnbt45e6owii7" path="res://utils/items/porkchop/porkchop.tscn" id="12_bplcg"]
 [ext_resource type="PackedScene" uid="uid://6t4yqhuac60b" path="res://utils/tools/axe/axe.tscn" id="13_bct88"]
 [ext_resource type="PackedScene" uid="uid://b3hlfdicn6pmq" path="res://utils/tools/hoe/hoe.tscn" id="14_tnovc"]
 [ext_resource type="PackedScene" uid="uid://v163y6wi8556" path="res://utils/furniture/furnace/furnace.tscn" id="15_2yh8w"]
 [ext_resource type="PackedScene" uid="uid://dgl5i3awvde0u" path="res://utils/warship/warship.tscn" id="16_qbp2a"]
+[ext_resource type="PackedScene" uid="uid://d2bxk22fblro1" path="res://utils/items/coal/coal.tscn" id="19_rri7y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7y6o0"]
 texture = ExtResource("3_pdlpj")
@@ -1042,6 +1043,9 @@ position = Vector2(469, 365)
 
 [node name="hoe88" parent="Items/Node2D" instance=ExtResource("14_tnovc")]
 position = Vector2(469, 365)
+
+[node name="coal" parent="Items" instance=ExtResource("19_rri7y")]
+position = Vector2(368, 330)
 
 [node name="Enemys" type="Node2D" parent="."]
 

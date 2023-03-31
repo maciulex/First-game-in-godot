@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxfa1ad3u6xv7"]
+[gd_scene load_steps=4 format=3 uid="uid://cnbt45e6owii7"]
 
-[ext_resource type="Script" path="res://utils/porkchop/porkchop.gd" id="1_pc4nf"]
+[ext_resource type="Script" path="res://utils/items/porkchop/porkchop.gd" id="1_pc4nf"]
 [ext_resource type="Texture2D" uid="uid://b71u146av2s0o" path="res://art/Raw_Porkchop.png" id="1_vtpjf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iopox"]

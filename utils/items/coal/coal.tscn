@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2bxk22fblro1"]
+
+[ext_resource type="Script" path="res://utils/items/coal/coal.gd" id="1_yn4yf"]
+[ext_resource type="Texture2D" uid="uid://dl2uxcfs0fi61" path="res://art/coal.png" id="2_rdx2t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iopox"]
+size = Vector2(7, 8)
+
+[node name="coal" type="Node2D"]
+script = ExtResource("1_yn4yf")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.1218, 0.207669)
+texture = ExtResource("2_rdx2t")
+
+[node name="item" type="Area2D" parent="."]
+z_as_relative = false
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="item"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_iopox")
