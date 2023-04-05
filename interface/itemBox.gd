@@ -1,6 +1,6 @@
 extends Control
 
-
+@export var index : int = -1; 
 
 
 func _on_button_pressed():

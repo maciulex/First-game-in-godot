@@ -78,23 +78,23 @@ func _physics_process(delta):
 	move_and_slide();
 	
 func closeStorageTypeObject():
-	blockPlayerActionForTime(0.1);
+	blockPlayerActionForTime(0.2);
 	unblockPlayerMovement();
 	
 func openStorageTypeObject():
 	blockPlayerMovement();
-	blockPlayerActionForTime(0.1);
+	blockPlayerActionForTime(0.2);
 
 func blockPlayerActionForTime(time: float = 1):
 	$actionLock.start(time)
 	playerData.actionLock = true;
 
-func externalInventoryHandler(x):
-	print("x: ", x)
+func openBlockInventory(blockInventory, pattern):
+	$Control/Inventory.openBlockInventory(blockInventory, pattern);
+	
 
 func actionGroup():
 	if (playerData.activeObject != null):
-		playerData.activeObject.clickAction();
 		closeStorageTypeObject();
 		playerData.activeObject = null;
 		return;
@@ -104,14 +104,9 @@ func actionGroup():
 	if "PrimaryName" in object:
 		match object.PrimaryName:
 			"Furnace":
-				object.clickAction();
 				openStorageTypeObject();
-				object.connect("boxClicked", externalInventoryHandler)
+				openBlockInventory(object.inventory, object.displayPattern)
 				playerData.activeObject = (object);
-
-						
-				
-
 
 func animationForWalkOrIdle(move_input : Vector2):
 	if (move_input != Vector2.ZERO):
@@ -250,7 +245,7 @@ func freeInventorySpace() -> int:
 	return playerData.Items.find(null);
 
 func findNotFullInventoryStack(object) -> int:
-	for	i in range(5):
+	for	i in range(59):
 		if (playerData.Items[i] == null):
 			continue;
 		if (playerData.Items[i].get("Item_id") != object.get("Item_id")):

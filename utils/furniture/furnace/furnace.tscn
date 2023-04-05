@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://v163y6wi8556"]
+[gd_scene load_steps=4 format=3 uid="uid://v163y6wi8556"]
 
 [ext_resource type="Script" path="res://utils/furniture/furnace/furnace.gd" id="1_kfr0l"]
 [ext_resource type="Texture2D" uid="uid://cjqxu3ayyvu8v" path="res://art/Sprout Lands - Sprites - Basic pack/other/furnace/furnace.png" id="1_mnr8u"]
-[ext_resource type="PackedScene" uid="uid://bq2l0c2ycrs0m" path="res://interface/itemBox.tscn" id="3_7cgfj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_732hs"]
 size = Vector2(14, 16)
@@ -16,36 +15,3 @@ texture = ExtResource("1_mnr8u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_732hs")
-
-[node name="Control" type="Control" parent="."]
-visible = false
-visibility_layer = 2
-z_index = 999
-layout_mode = 3
-anchors_preset = 0
-offset_left = -14.0
-offset_top = -32.0
-offset_right = -14.0
-offset_bottom = -32.0
-scale = Vector2(0.5, 0.5)
-
-[node name="itemBox" parent="Control" instance=ExtResource("3_7cgfj")]
-layout_mode = 1
-offset_left = -4.0
-offset_top = -1.99999
-offset_right = -4.0
-offset_bottom = -1.99999
-
-[node name="itemBox3" parent="Control" instance=ExtResource("3_7cgfj")]
-layout_mode = 1
-offset_left = -4.0
-offset_top = 22.0
-offset_right = -4.0
-offset_bottom = 22.0
-
-[node name="itemBox2" parent="Control" instance=ExtResource("3_7cgfj")]
-layout_mode = 1
-offset_left = 28.0
-offset_top = 10.0
-offset_right = 28.0
-offset_bottom = 10.0

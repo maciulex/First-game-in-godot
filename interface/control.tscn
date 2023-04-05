@@ -87,23 +87,21 @@ theme_override_font_sizes/font_size = 39
 
 [node name="Inventory" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 73.0
-offset_top = 42.0
-offset_right = 444.0
-offset_bottom = 224.0
+offset_left = 72.0
+offset_right = 443.0
+offset_bottom = 271.0
 script = ExtResource("5_xpikk")
 
 [node name="MainInventory" type="GridContainer" parent="Inventory"]
-visible = false
 layout_mode = 0
-offset_left = 71.0
-offset_top = 65.0
-offset_right = 289.0
-offset_bottom = 195.0
+offset_left = 93.0
+offset_top = 132.0
+offset_right = 311.0
+offset_bottom = 262.0
+scale = Vector2(0.8, 0.8)
 theme_override_constants/h_separation = 24
 theme_override_constants/v_separation = 21
 columns = 9
-metadata/_edit_lock_ = true
 
 [node name="itemBox6" parent="Inventory/MainInventory" instance=ExtResource("5_etfrn")]
 layout_mode = 2
@@ -269,10 +267,10 @@ layout_mode = 2
 
 [node name="ToolBar" type="Control" parent="Inventory"]
 anchors_preset = 0
-offset_left = 120.0
-offset_top = 200.0
-offset_right = 242.0
-offset_bottom = 223.0
+offset_left = 116.0
+offset_top = 242.0
+offset_right = 238.0
+offset_bottom = 265.0
 metadata/_edit_lock_ = true
 
 [node name="itemBox1" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
@@ -281,7 +279,6 @@ offset_left = -1.0
 offset_top = -1.0
 offset_right = -124.0
 offset_bottom = -24.0
-metadata/_edit_lock_ = true
 
 [node name="itemBox2" parent="Inventory/ToolBar" instance=ExtResource("5_etfrn")]
 layout_mode = 1
@@ -314,6 +311,34 @@ offset_top = -1.0
 offset_right = -28.0
 offset_bottom = -24.0
 metadata/_edit_lock_ = true
+
+[node name="blockFuseTypeInventory" type="Control" parent="Inventory"]
+anchors_preset = 0
+offset_left = 95.0
+offset_top = 27.0
+offset_right = 267.0
+offset_bottom = 131.0
+
+[node name="BlockInventory1" parent="Inventory/blockFuseTypeInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 1
+offset_left = 39.0
+offset_top = 56.0
+offset_right = -133.0
+offset_bottom = -48.0
+
+[node name="BlockInventory2" parent="Inventory/blockFuseTypeInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 1
+offset_left = 101.0
+offset_top = 71.0
+offset_right = -71.0
+offset_bottom = -33.0
+
+[node name="BlockInventory3" parent="Inventory/blockFuseTypeInventory" instance=ExtResource("5_etfrn")]
+layout_mode = 1
+offset_left = 101.0
+offset_top = 36.0
+offset_right = -71.0
+offset_bottom = -68.0
 
 [connection signal="itemClicked" from="ItemsOnGround" to="." method="_on_items_on_ground_item_clicked"]
 [connection signal="item_activated" from="ItemsOnGround/ItemList" to="ItemsOnGround" method="_on_item_list_item_activated"]
