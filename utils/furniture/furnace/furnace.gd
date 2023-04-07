@@ -4,4 +4,4 @@ extends StaticBody2D
 
 @export var active :bool = false;
 @export var inventory = [null,null,null];
-@export var displayPattern = "fusionTypeInventory";
+@export var displayPattern = "blockFuseTypeInventory";

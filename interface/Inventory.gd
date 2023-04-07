@@ -2,9 +2,8 @@ extends Control
 
 @onready var playerData = get_node("/root/PlayerData");
 const inventorySize = 59;
+var blockInventoryChange : bool = false;
 
-var boxInventoryPattern = null;
-var boxInventory = null;
 
 @onready var InventoryBoxes = [
 	$ToolBar/itemBox1,
@@ -15,6 +14,7 @@ var boxInventory = null;
 ];
 
 func selectItemInToolBar(inventoryObject):
+	print(inventoryObject.index);
 	InventoryBoxes[playerData.equipedTool].get_node("UnselectedItem/SelectedItem").visible = false;
 	playerData.equipedTool = inventoryObject.index;
 	inventoryObject.get_node("UnselectedItem/SelectedItem").visible = true;
@@ -60,20 +60,61 @@ func updateToolbarAtIndex(index):
 	pass;
 	
 var eqStateChange : bool = false;
+
+func openPlayerInventory():
+	if (blockInventoryChange):
+		return -1;
+	$MainInventory.visible = true;	
+	eqStateChange = true;
+
+func closePlayerInventory():
+	if (blockInventoryChange):
+		return -1;
+	$MainInventory.visible = false;	
+	eqStateChange = true;
+	pass;
+	
+func togglePlayerInventory():
+	if (blockInventoryChange):
+		return -1;
+	$MainInventory.visible = !$MainInventory.visible;
+	eqStateChange = true;
+
 func _physics_process(delta):
 	if (Input.get_action_strength("eq") > 0 && !eqStateChange):
-		$MainInventory.visible = !$MainInventory.visible;
-		eqStateChange = true;
-	if (Input.get_action_strength("eq") == 0): eqStateChange = false;
+		togglePlayerInventory();
+	if (Input.get_action_strength("eq") == 0): 
+		eqStateChange = false;
 	
 	for i in range(5):
 		if (Input.get_action_strength(str(i+1)) == 1):
 			selectItemInToolBar(InventoryBoxes[i])
+			
+var boxInventoryPattern = null;
+var boxInventory = null;
 
 func openBlockInventory(inventory, pattern):
-	print(inventory, pattern)
+	openPlayerInventory();
+	blockInventoryChange = true;
+	boxInventoryPattern = pattern;
+	boxInventory = inventory;
+	match pattern:
+		"blockFuseTypeInventory":
+			$blockFuseTypeInventory.visible = true;
 	pass;
 
+func updateBlockInventory():
+	pass;
+	
+func closeBlockInventory():
+	blockInventoryChange = false;
+	closePlayerInventory();
+	match boxInventoryPattern:
+		"blockFuseTypeInventory":
+			$blockFuseTypeInventory.visible = false;
+	boxInventoryPattern = null;
+	boxInventory = null;
+	
 func inventoryBoxClicked(space):
 	if (space.find("BlockInventory") != -1):
 		#block inventory Clicked
@@ -90,6 +131,7 @@ func swapInventory(from, to):
 	playerData.Items[to] = placeHolder; 
 	updateToolbarAtIndex(from);
 	updateToolbarAtIndex(to);
+	
 func _ready():
 	for i in range(0,5):
 		InventoryBoxes[i].index = i;

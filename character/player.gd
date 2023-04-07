@@ -80,6 +80,7 @@ func _physics_process(delta):
 func closeStorageTypeObject():
 	blockPlayerActionForTime(0.2);
 	unblockPlayerMovement();
+	$Control/Inventory.closeBlockInventory();
 	
 func openStorageTypeObject():
 	blockPlayerMovement();
