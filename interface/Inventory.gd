@@ -14,7 +14,6 @@ var blockInventoryChange : bool = false;
 ];
 
 func selectItemInToolBar(inventoryObject):
-	print(inventoryObject.index);
 	InventoryBoxes[playerData.equipedTool].get_node("UnselectedItem/SelectedItem").visible = false;
 	playerData.equipedTool = inventoryObject.index;
 	inventoryObject.get_node("UnselectedItem/SelectedItem").visible = true;
@@ -89,31 +88,35 @@ func _physics_process(delta):
 	for i in range(5):
 		if (Input.get_action_strength(str(i+1)) == 1):
 			selectItemInToolBar(InventoryBoxes[i])
-			
-var boxInventoryPattern = null;
-var boxInventory = null;
 
-func openBlockInventory(inventory, pattern):
+var blockInventoryOpened = null;
+var boxInventoryContainer =null;
+
+func openBlockInventory(BLOCK):
 	openPlayerInventory();
 	blockInventoryChange = true;
-	boxInventoryPattern = pattern;
-	boxInventory = inventory;
-	match pattern:
+	blockInventoryOpened = BLOCK
+	match blockInventoryOpened.displayPattern:
 		"blockFuseTypeInventory":
-			$blockFuseTypeInventory.visible = true;
-	pass;
-
+			boxInventoryContainer = $blockFuseTypeInventory;
+	updateBlockInventory();
+	boxInventoryContainer.visible = true;
+	
 func updateBlockInventory():
-	pass;
+	var counter = 1;
+	for item in blockInventoryOpened.inventory:
+		var inventoryBox = boxInventoryContainer.get_node("BlockInventory"+str(counter));
+		loadSpriteForToolBarIndex(item, inventoryBox);
+		updateToolbarAmountValAtIndex(item, inventoryBox)
+		counter += 1;
 	
 func closeBlockInventory():
 	blockInventoryChange = false;
 	closePlayerInventory();
-	match boxInventoryPattern:
-		"blockFuseTypeInventory":
-			$blockFuseTypeInventory.visible = false;
-	boxInventoryPattern = null;
-	boxInventory = null;
+	boxInventoryContainer.visible = false;
+			
+	boxInventoryContainer= null;
+	blockInventoryOpened = null;
 	
 func inventoryBoxClicked(space):
 	if (space.find("BlockInventory") != -1):

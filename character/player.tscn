@@ -902,7 +902,6 @@ graph_offset = Vector2(-141, 32)
 size = Vector2(8, 16)
 
 [node name="Player" type="CharacterBody2D" groups=["CowEnemy"]]
-z_index = 500
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_mn1hc")

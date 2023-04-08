@@ -78,6 +78,7 @@ func _physics_process(delta):
 	move_and_slide();
 	
 func closeStorageTypeObject():
+	playerData.activeObject = null;
 	blockPlayerActionForTime(0.2);
 	unblockPlayerMovement();
 	$Control/Inventory.closeBlockInventory();
@@ -90,15 +91,14 @@ func blockPlayerActionForTime(time: float = 1):
 	$actionLock.start(time)
 	playerData.actionLock = true;
 
-func openBlockInventory(blockInventory, pattern):
-	$Control/Inventory.openBlockInventory(blockInventory, pattern);
+func openBlockInventory(object):
+	$Control/Inventory.openBlockInventory(object);
 	
 
 func actionGroup():
 	if (playerData.activeObject != null):
-		closeStorageTypeObject();
-		playerData.activeObject = null;
-		return;
+		return closeStorageTypeObject();
+		
 	var object = getColliderFromVector(playerData.lookingDirection);
 	if (object == null):
 		return;
@@ -106,7 +106,7 @@ func actionGroup():
 		match object.PrimaryName:
 			"Furnace":
 				openStorageTypeObject();
-				openBlockInventory(object.inventory, object.displayPattern)
+				openBlockInventory(object)
 				playerData.activeObject = (object);
 
 func animationForWalkOrIdle(move_input : Vector2):

@@ -93,6 +93,7 @@ offset_bottom = 271.0
 script = ExtResource("5_xpikk")
 
 [node name="MainInventory" type="GridContainer" parent="Inventory"]
+visible = false
 layout_mode = 0
 offset_left = 93.0
 offset_top = 132.0
