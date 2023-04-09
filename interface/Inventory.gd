@@ -5,6 +5,9 @@ const inventorySize = 59;
 var blockInventoryChange : bool = false;
 
 
+var blockInventoryOpened = null;
+var boxInventoryContainer =null;
+
 @onready var InventoryBoxes = [
 	$ToolBar/itemBox1,
 	$ToolBar/itemBox2,
@@ -14,10 +17,17 @@ var blockInventoryChange : bool = false;
 ];
 
 func selectItemInToolBar(inventoryObject):
-	InventoryBoxes[playerData.equipedTool].get_node("UnselectedItem/SelectedItem").visible = false;
+	if (playerData.equipedTool > -1):
+		#player inventory/toolbar
+		InventoryBoxes[playerData.equipedTool].get_node("UnselectedItem/SelectedItem").visible = false;
+	else:
+		#inventory for blocks
+		boxInventoryContainer.get_node("BlockInventory"+str(playerData.equipedTool*-1)).get_node("UnselectedItem/SelectedItem").visible = false;
+		pass;
 	playerData.equipedTool = inventoryObject.index;
+	
 	inventoryObject.get_node("UnselectedItem/SelectedItem").visible = true;
-
+	
 func getSprite(textureName):
 	match textureName:
 		null:
@@ -89,8 +99,7 @@ func _physics_process(delta):
 		if (Input.get_action_strength(str(i+1)) == 1):
 			selectItemInToolBar(InventoryBoxes[i])
 
-var blockInventoryOpened = null;
-var boxInventoryContainer =null;
+
 
 func openBlockInventory(BLOCK):
 	openPlayerInventory();
@@ -121,7 +130,7 @@ func closeBlockInventory():
 func inventoryBoxClicked(space):
 	if (space.find("BlockInventory") != -1):
 		#block inventory Clicked
-		
+		selectItemInToolBar(boxInventoryContainer.get_node(str(space)));
 		return;
 	space = int(space.lstrip("itemBox"))-1;
 	if (playerData.Items[space] == null && playerData.Items[playerData.equipedTool] != null):
