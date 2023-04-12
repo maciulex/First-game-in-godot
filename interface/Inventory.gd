@@ -64,6 +64,11 @@ func updateToolBarAmountVals():
 		updateToolbarAmountValAtIndex(playerData.Items[index], InventoryBoxes[index]);
 
 func updateToolbarAtIndex(index):
+	if (index < 0):
+		index = (index*-1)-1;
+		loadSpriteForToolBarIndex(    blockInventoryOpened.inventory[index], boxInventoryContainer.get_node("BlockInventory"+str(index+1)));
+		updateToolbarAmountValAtIndex(blockInventoryOpened.inventory[index], boxInventoryContainer.get_node("BlockInventory"+str(index+1)));
+		return;
 	loadSpriteForToolBarIndex(playerData.Items[index], InventoryBoxes[index]);
 	updateToolbarAmountValAtIndex(playerData.Items[index], InventoryBoxes[index]);
 	pass;
@@ -115,11 +120,12 @@ func updateBlockInventory():
 	var counter = 1;
 	for item in blockInventoryOpened.inventory:
 		var inventoryBox = boxInventoryContainer.get_node("BlockInventory"+str(counter));
-		loadSpriteForToolBarIndex(item, inventoryBox);
-		updateToolbarAmountValAtIndex(item, inventoryBox)
+		updateToolbarAtIndex(counter*-1);
 		counter += 1;
 	
 func closeBlockInventory():
+	if (playerData.equipedTool  < 0):
+		selectItemInToolBar(InventoryBoxes[0]);
 	blockInventoryChange = false;
 	closePlayerInventory();
 	boxInventoryContainer.visible = false;
@@ -130,17 +136,35 @@ func closeBlockInventory():
 func inventoryBoxClicked(space):
 	if (space.find("BlockInventory") != -1):
 		#block inventory Clicked
+		swapInventory(playerData.equipedTool, int(space.lstrip("BlockInventory"))*-1);				
 		selectItemInToolBar(boxInventoryContainer.get_node(str(space)));
 		return;
 	space = int(space.lstrip("itemBox"))-1;
 	if (playerData.Items[space] == null && playerData.Items[playerData.equipedTool] != null):
 		swapInventory(space, playerData.equipedTool);
 	selectItemInToolBar(InventoryBoxes[space]);
-
+#equipedToolOutsideMainInv
 func swapInventory(from, to):
-	var placeHolder = playerData.Items[from];
-	playerData.Items[from] = playerData.Items[to];
-	playerData.Items[to] = placeHolder; 
+	if (from == to):
+		return;
+	if (from < 0):
+		if (to < 0):
+			var placeHolder = blockInventoryOpened.inventory[(from*-1)-1];
+			blockInventoryOpened.inventory[(from*-1)-1] = blockInventoryOpened.inventory[(to*-1)-1];	
+			blockInventoryOpened.inventory[(to*-1)-1] = placeHolder;		
+		else:
+			var placeHolder = blockInventoryOpened.inventory[(from*-1)-1];
+			blockInventoryOpened.inventory[(from*-1)-1] = playerData.Items[to];
+			playerData.Items[to] = placeHolder;
+	else:
+		if (to < 0):
+			var placeHolder =playerData.Items[from];
+			playerData.Items[from] = blockInventoryOpened.inventory[(to*-1)-1];
+			blockInventoryOpened.inventory[(to*-1)-1] = placeHolder;	
+		else:
+			var placeHolder = playerData.Items[from];
+			playerData.Items[from] = playerData.Items[to];
+			playerData.Items[to] = placeHolder
 	updateToolbarAtIndex(from);
 	updateToolbarAtIndex(to);
 	

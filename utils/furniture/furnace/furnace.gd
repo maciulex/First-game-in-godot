@@ -9,5 +9,5 @@ extends StaticBody2D
 
 func _ready():
 	var coal = preload("res://utils/items/coal/coal.tscn").instantiate();
-	coal.Amount = 10;
+	coal.Amount = 10;  
 	inventory[0] = coal;

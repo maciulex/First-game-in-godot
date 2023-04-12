@@ -15,6 +15,7 @@ var activeObject = null;
 
 #toolbar
 @onready var Items = [];
+var equipedToolOutsideMainInv = false;
 var equipedTool = 0;
 
 var itemsOnGround : Array = [];
