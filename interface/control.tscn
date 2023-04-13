@@ -314,7 +314,6 @@ offset_bottom = -24.0
 metadata/_edit_lock_ = true
 
 [node name="blockFuseTypeInventory" type="Control" parent="Inventory"]
-visible = false
 anchors_preset = 0
 offset_left = 95.0
 offset_top = 27.0
@@ -323,24 +322,24 @@ offset_bottom = 131.0
 
 [node name="BlockInventory1" parent="Inventory/blockFuseTypeInventory" instance=ExtResource("5_etfrn")]
 layout_mode = 1
-offset_left = 39.0
-offset_top = 56.0
-offset_right = -133.0
-offset_bottom = -48.0
+offset_left = 42.0
+offset_top = 73.0
+offset_right = -130.0
+offset_bottom = -31.0
 
 [node name="BlockInventory2" parent="Inventory/blockFuseTypeInventory" instance=ExtResource("5_etfrn")]
 layout_mode = 1
-offset_left = 101.0
-offset_top = 71.0
-offset_right = -71.0
-offset_bottom = -33.0
+offset_left = 43.0
+offset_top = 32.0
+offset_right = -129.0
+offset_bottom = -72.0
 
 [node name="BlockInventory3" parent="Inventory/blockFuseTypeInventory" instance=ExtResource("5_etfrn")]
 layout_mode = 1
-offset_left = 101.0
-offset_top = 36.0
-offset_right = -71.0
-offset_bottom = -68.0
+offset_left = 102.0
+offset_top = 51.0
+offset_right = -70.0
+offset_bottom = -53.0
 
 [connection signal="itemClicked" from="ItemsOnGround" to="." method="_on_items_on_ground_item_clicked"]
 [connection signal="item_activated" from="ItemsOnGround/ItemList" to="ItemsOnGround" method="_on_item_list_item_activated"]

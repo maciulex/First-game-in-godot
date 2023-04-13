@@ -134,13 +134,20 @@ func closeBlockInventory():
 	blockInventoryOpened = null;
 	
 func inventoryBoxClicked(space):
+	print(space, " | ", playerData.equipedTool);
 	if (space.find("BlockInventory") != -1):
 		#block inventory Clicked
-		swapInventory(playerData.equipedTool, int(space.lstrip("BlockInventory"))*-1);				
+		var blockInvIndex =int(space.lstrip("BlockInventory"));
+		if(playerData.equipedTool > 0 && playerData.Items[playerData.equipedTool] != null):
+			if (blockInventoryOpened.canBePlacedOnInv(blockInvIndex-1, playerData.Items[playerData.equipedTool].Item_id)):
+				swapInventory(playerData.equipedTool, blockInvIndex*-1);				
 		selectItemInToolBar(boxInventoryContainer.get_node(str(space)));
 		return;
+		
+		
 	space = int(space.lstrip("itemBox"))-1;
-	if (playerData.Items[space] == null && playerData.Items[playerData.equipedTool] != null):
+	if (	playerData.Items[space] == null && 
+			(playerData.Items[playerData.equipedTool] != null || playerData.equipedTool < 0)):
 		swapInventory(space, playerData.equipedTool);
 	selectItemInToolBar(InventoryBoxes[space]);
 #equipedToolOutsideMainInv

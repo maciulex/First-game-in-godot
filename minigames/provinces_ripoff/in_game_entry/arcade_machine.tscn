@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://hi53q2bu0htf"]
+
+[ext_resource type="Script" path="res://minigames/provinces_ripoff/in_game_entry/arcade_machine.gd" id="1_3j516"]
+[ext_resource type="Texture2D" uid="uid://73rejlajlgly" path="res://art/arcade_machine.png" id="1_26h8d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7dfx"]
+size = Vector2(14, 16)
+
+[node name="arcade_machine" type="StaticBody2D"]
+script = ExtResource("1_3j516")
+
+[node name="ArcadeMachine" type="Sprite2D" parent="."]
+position = Vector2(-1.19209e-07, 7.10543e-15)
+scale = Vector2(0.111111, 0.109028)
+texture = ExtResource("1_26h8d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_q7dfx")
+metadata/_edit_lock_ = true

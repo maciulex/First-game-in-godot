@@ -108,6 +108,8 @@ func actionGroup():
 				openStorageTypeObject();
 				openBlockInventory(object)
 				playerData.activeObject = (object);
+			"Arcade_machine":
+				get_tree().change_scene_to_file(object.sceneToLoad);
 
 func animationForWalkOrIdle(move_input : Vector2):
 	if (move_input != Vector2.ZERO):
