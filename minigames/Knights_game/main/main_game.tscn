@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bscwhljdpr4"]
+
+[ext_resource type="Script" path="res://minigames/Knights_game/main/main_game.gd" id="1_jby4u"]
+
+[node name="main_game" type="Node2D"]
+script = ExtResource("1_jby4u")

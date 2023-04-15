@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://uqry4sx36oel"]
+[gd_scene load_steps=31 format=3 uid="uid://uqry4sx36oel"]
 
 [ext_resource type="Script" path="res://gameLevels/mainLevel/game_level.gd" id="1_mh83j"]
 [ext_resource type="PackedScene" uid="uid://rsl43nlh0qrc" path="res://character/player.tscn" id="2_a0jd0"]
@@ -19,7 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://v163y6wi8556" path="res://utils/furniture/furnace/furnace.tscn" id="15_2yh8w"]
 [ext_resource type="PackedScene" uid="uid://dgl5i3awvde0u" path="res://utils/warship/warship.tscn" id="16_qbp2a"]
 [ext_resource type="PackedScene" uid="uid://d2bxk22fblro1" path="res://utils/items/coal/coal.tscn" id="19_rri7y"]
-[ext_resource type="PackedScene" uid="uid://hi53q2bu0htf" path="res://minigames/provinces_ripoff/in_game_entry/arcade_machine.tscn" id="20_cmy6r"]
+[ext_resource type="PackedScene" uid="uid://cij63gal274hl" path="res://minigames/provinces_ripoff/arcade_machine.tscn" id="20_uusb7"]
+[ext_resource type="PackedScene" uid="uid://cxyktel5barx1" path="res://minigames/Knights_game/arcade_machine.tscn" id="21_ur1bd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7y6o0"]
 texture = ExtResource("3_pdlpj")
@@ -1064,5 +1065,10 @@ position = Vector2(426, 286)
 [node name="warship" parent="." instance=ExtResource("16_qbp2a")]
 position = Vector2(-51, 391)
 
-[node name="arcade_machine" parent="." instance=ExtResource("20_cmy6r")]
-position = Vector2(427, 247)
+[node name="Arcades" type="Node2D" parent="."]
+
+[node name="arcade_machine" parent="." instance=ExtResource("20_uusb7")]
+position = Vector2(364, 225)
+
+[node name="arcade_machine2" parent="." instance=ExtResource("21_ur1bd")]
+position = Vector2(419, 224)

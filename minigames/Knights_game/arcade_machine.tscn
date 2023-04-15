@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxyktel5barx1"]
+
+[ext_resource type="PackedScene" uid="uid://cxhrqrfu3f6ci" path="res://minigames/in_game_entry/arcade_machine.tscn" id="1_rlj46"]
+[ext_resource type="Script" path="res://minigames/Knights_game/arcade_machine.gd" id="2_xpno6"]
+
+[node name="arcade_machine" instance=ExtResource("1_rlj46")]
+script = ExtResource("2_xpno6")
+sceneToLoad = "res://minigames/Knights_game/main/main_game.tscn"
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

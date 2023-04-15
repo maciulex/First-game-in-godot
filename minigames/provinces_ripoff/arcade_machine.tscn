@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cij63gal274hl"]
+
+[ext_resource type="PackedScene" uid="uid://cxhrqrfu3f6ci" path="res://minigames/in_game_entry/arcade_machine.tscn" id="1_mhcr3"]
+[ext_resource type="Script" path="res://minigames/provinces_ripoff/arcade_machine.gd" id="2_su8xy"]
+
+[node name="arcade_machine" instance=ExtResource("1_mhcr3")]
+script = ExtResource("2_su8xy")
+sceneToLoad = "res://minigames/provinces_ripoff/main/main_game.tscn"
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

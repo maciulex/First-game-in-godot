@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://78b6ek4wkifd"]
+[gd_scene load_steps=2 format=3 uid="uid://78b6ek4wkifd"]
+
+[ext_resource type="Script" path="res://minigames/provinces_ripoff/main/main_game.gd" id="1_lduqf"]
 
 [node name="main_game" type="Node2D"]
+script = ExtResource("1_lduqf")

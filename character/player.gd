@@ -109,7 +109,10 @@ func actionGroup():
 				openBlockInventory(object)
 				playerData.activeObject = (object);
 			"Arcade_machine":
+				playerData.globals.CombackSceneFromArcade = get_tree().current_scene.scene_file_path;
+				PlayerData.cordsBeforeEntringBuilding = position;
 				get_tree().change_scene_to_file(object.sceneToLoad);
+				
 
 func animationForWalkOrIdle(move_input : Vector2):
 	if (move_input != Vector2.ZERO):
