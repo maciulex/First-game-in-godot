@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dtorx27afbhp1"]
+
+[node name="point" type="Node2D"]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 1, 1)
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2(1, 0)
+points = PackedVector2Array(0, 0, -1, 1)

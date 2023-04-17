@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://78b6ek4wkifd"]
+[gd_scene load_steps=4 format=3 uid="uid://78b6ek4wkifd"]
 
 [ext_resource type="Script" path="res://minigames/provinces_ripoff/main/main_game.gd" id="1_lduqf"]
 
+[sub_resource type="Gradient" id="Gradient_f0skw"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qqfiw"]
+gradient = SubResource("Gradient_f0skw")
+
 [node name="main_game" type="Node2D"]
 script = ExtResource("1_lduqf")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(961, 523)
+scale = Vector2(-6968.96, -3836.26)
+texture = SubResource("GradientTexture1D_qqfiw")
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+position = Vector2(4, 0)
+remote_path = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="RemoteTransform2D"]
+position = Vector2(956, 538)
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.0
+
+[node name="Lines" type="Node2D" parent="."]
