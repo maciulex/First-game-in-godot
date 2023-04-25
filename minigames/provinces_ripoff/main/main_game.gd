@@ -2,7 +2,7 @@ extends Node2D
 
 var GlobalData;
 
-var AMOUNT_OF_POINTS : int = 7;
+var AMOUNT_OF_POINTS : int = 20;
 var BOARD_SIZE : Vector2;
 var MARGIN_FOR_POINTS = 20;
 var POINTS_MINIMUM_DISTANCE = 90;
@@ -13,6 +13,24 @@ var centers : Array;
 var triangles : Array;
 enum CirclePosition {INSIDE, ON_EDGE, OUTSIDE}
 var pointNode = preload("res://minigames/provinces_ripoff/utils/point/point.tscn");
+
+func getRandomPoints():
+	#points = [Vector2(1595, 999), Vector2(1498, 142), Vector2(178, 77), Vector2(559, 904),Vector2(1879, 882), Vector2(1619, 330), Vector2(1448, 596)];
+	for i in range(AMOUNT_OF_POINTS):
+		var point = generateRandomPoint();
+		points.append(point);
+	#	drawCross(points[i])
+	for i in range(AMOUNT_OF_POINTS):
+		drawCross(points[i])
+func generateRandomPoint(margin = true) -> Vector2:
+	var point;
+	while (true):
+		point = Vector2(randi_range(MARGIN_FOR_POINTS, BOARD_SIZE.x-MARGIN_FOR_POINTS), 
+							randi_range(MARGIN_FOR_POINTS, BOARD_SIZE.y-MARGIN_FOR_POINTS)
+						);
+		if (checkForMargines(point) || !margin):
+			break;
+	return point
 
 class Polygon:
 	var points : Array = [];
@@ -42,26 +60,9 @@ func checkForMargines(point) -> bool:
 			return false;
 	return true;
 
-func getRandomPoints():
-	#points = [Vector2(1595, 999), Vector2(1498, 142), Vector2(178, 77), Vector2(559, 904),Vector2(1879, 882), Vector2(1619, 330), Vector2(1448, 596)];
-	#for i in range(AMOUNT_OF_POINTS):
-	#	drawCross(points[i])
-	#return;
-	for i in range(AMOUNT_OF_POINTS):
-		var point = generateRandomPoint();
-		points.append(point);
-		drawCross(points[i])
-		continue
 
-func generateRandomPoint(margin = true) -> Vector2:
-	var point;
-	while (true):
-		point = Vector2(randi_range(MARGIN_FOR_POINTS, BOARD_SIZE.x-MARGIN_FOR_POINTS), 
-							randi_range(MARGIN_FOR_POINTS, BOARD_SIZE.y-MARGIN_FOR_POINTS)
-						);
-		if (checkForMargines(point) || !margin):
-			break;
-	return point
+
+
 
 func getDst(point1, point2):
 	return (
@@ -109,7 +110,7 @@ func drawLine(point1, point2, color : Color = Color(255,255,255)):
 func isOnEdgeOfCircle(point : Vector2, S : Vector2, r) -> CirclePosition:
 	#(point.x*point.x) + (point.y*point.y) - 2*(S.x*point.x)-2*(S.y*point.y)
 	var res = pow(point.x - S.x,2) + pow(point.y - S.y,2);
-	print(res, " | ", r, " | ", res - r)
+	#print(res, " | ", r, " | ", res - r)
 	r = r*r
 	#print(r, " | ",res)
 	
@@ -218,6 +219,7 @@ func fundTriantgleIndex(triangle):
 			return counter;
 		counter += 1;
 		pass;
+		
 
 func isSharedEdge(arr, triangle, edge, second = false) -> bool:
 	for tri in arr:
@@ -239,17 +241,17 @@ func triangulation():
 		for triangle in triangles:
 			var S = getTriangleCircumcenterCenter(triangle);
 			var R = getTriangleCircumcenterRadius(triangle);
-			drawCross(S, Color(255,0,255))
-			drawCircle(S,R)
-			print("outside: ", isOnEdgeOfCircle(point, S, R), ", " ,point, ", ", S, ", ", R);
+			#drawCross(S, Color(255,0,255))
+			#drawCircle(S,R)
+			#print("outside: ", isOnEdgeOfCircle(point, S, R), ", " ,point, ", ", S, ", ", R);
 			var positionOnCircle = isOnEdgeOfCircle(point, S, R);
 			if (positionOnCircle == CirclePosition.INSIDE || positionOnCircle == CirclePosition.ON_EDGE):
-				print("inside")
+				#print("inside")
 				badTriangles.append(triangle);
 			pass;
 				
 		var polygon = [];
-		print("here ", badTriangles)
+		#print("here ", badTriangles)
 		for triangle in badTriangles:
 			if (!isSharedEdge(badTriangles, triangle, [triangle[0], triangle[1]])):
 				polygon.append([triangle[0], triangle[1]]);
@@ -258,11 +260,11 @@ func triangulation():
 			if (!isSharedEdge(badTriangles, triangle, [triangle[1], triangle[2]])):
 				polygon.append([triangle[1], triangle[2]]);
 				
-		print("poly",polygon)		
+		#print("poly",polygon)		
 		for triangle in badTriangles:
 			var index = fundTriantgleIndex(triangle)
-			print(index);
 			triangles.remove_at(index);
+			#print(index);
 		
 		for edge in polygon:
 			var newTriangle = [
@@ -271,17 +273,17 @@ func triangulation():
 				Vector2(edge[1])
 			]
 			triangles.append(newTriangle);
-			drawLine(newTriangle[0], newTriangle[1], Color("CORAL"));
-			drawLine(newTriangle[1], newTriangle[2], Color("CORAL"));
-			drawLine(newTriangle[0], newTriangle[2], Color("CORAL"));
+			#drawLine(newTriangle[0], newTriangle[1], Color("CORAL"));
+			#drawLine(newTriangle[1], newTriangle[2], Color("CORAL"));
+			#drawLine(newTriangle[0], newTriangle[2], Color("CORAL"));
 		#await get_tree().create_timer(2).timeout
 	var oryginalSuper =  getBigTriangle();
-	removeWithSuper(oryginalSuper);
+	#removeWithSuper(oryginalSuper);
 	
 	for tri in triangles:
-		drawLine(tri[0], tri[1]);
-		drawLine(tri[1], tri[2]);
-		drawLine(tri[2], tri[0]);
+		#drawLine(tri[0], tri[1]);
+		#drawLine(tri[1], tri[2]);
+		#drawLine(tri[2], tri[0]);
 		pass;
 
 func removeWithSuper(oryginalSuper):
@@ -296,46 +298,30 @@ func removeWithSuper(oryginalSuper):
 				triangles.remove_at(fundTriantgleIndex(tri));
 				Clean = false;
 			
-func drawLines(point):
-	var donePoints : Array = [];
-	for i in range(AMOUNT_OF_POINTS):
-		if (i == point): continue;
-		var closestPoint = getClosestPointIndex(point, donePoints);
-		var closestDist = closestPoint[1];
-		closestPoint = closestPoint[0];
-		var center = Vector2((points[point].x+points[closestPoint].x)/2, (points[point].y+points[closestPoint].y)/2);
-		donePoints.append(i);
-		drawCross(center, Color(255,0,0));
-		drawLine(points[point], points[closestPoint], Color(0,255,0))
-		var noLine = false
-		for z in range(AMOUNT_OF_POINTS):
-			if (z == point || z == i):
-				continue;
-			if (isOnEdgeOfCircle(points[z], center, closestDist) == CirclePosition.INSIDE):
-				noLine = true;
-				break;
-		if (noLine):
-			continue;
-		var rotated = getPointDeg(points[point], center, 90);
-		var m = (rotated.y - center.y)/(rotated.x-center.x)
-		var c = rotated.y - m * rotated.x
-		var edgeone = Vector2(0,c)
-		var edgetwo = Vector2(1920, m*1920+c)
-		
-		drawLine(edgeone, edgetwo);
-		lines.append([m,c]);
-		break;
+
 
 func VernoiDiagram():
+	var centers = []
 	triangulation()
-	return;
-	for i in range(AMOUNT_OF_POINTS):
-		drawLines(i);
+	#for triangle in triangles:
+	#	var S = getTriangleCircumcenterCenter(triangle);
+	#	centers.append(S);
 		
-		
-
-
-		
+	#for center in range(centers.size()-1):
+	#	drawLine(centers[center], centers[center+1], Color("CORAL"))
+	for triangle in triangles:
+		for t2 in triangles:
+			var a1 = triangle.find(t2[0]) != -1;
+			var a2 = triangle.find(t2[1]) != -1;
+			var a3 = triangle.find(t2[2]) != -1;
+			if (a1 && a2) || (a2 && a3) || (a1 && a3):
+				var S = getTriangleCircumcenterCenter(triangle);
+				var S2 = getTriangleCircumcenterCenter(t2);
+				drawCross(S, Color("BLUE_VIOLET"))
+				drawCross(S2, Color("BLUE_VIOLET"))
+				centers.append([S,S2]);
+				drawLine(S, S2, Color("CORAL"))
+				await get_tree().create_timer(0.1).timeout
 		
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -344,7 +330,7 @@ func _ready():
 
 	getRandomPoints()
 	VernoiDiagram()
-	print(points);
+	#print(points);
 	
 	return;
 	var point1 = Vector2(500,412);
