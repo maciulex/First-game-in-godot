@@ -2,7 +2,7 @@ extends Node2D
 
 var GlobalData;
 
-var AMOUNT_OF_POINTS : int = 20;
+var AMOUNT_OF_POINTS : int = 50;
 var BOARD_SIZE : Vector2;
 var MARGIN_FOR_POINTS = 20;
 var POINTS_MINIMUM_DISTANCE = 90;
