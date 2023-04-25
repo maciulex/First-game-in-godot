@@ -2,7 +2,7 @@ extends Node2D
 
 var GlobalData;
 
-var AMOUNT_OF_POINTS : int = 5;
+var AMOUNT_OF_POINTS : int = 7;
 var BOARD_SIZE : Vector2;
 var MARGIN_FOR_POINTS = 20;
 var POINTS_MINIMUM_DISTANCE = 90;
@@ -19,6 +19,10 @@ class Polygon:
 	var lines  : Array = [];
 	var centerPoint : int;
 
+func drawCircle(s, r):
+	var circle_inst = $Circle.duplicate();
+	circle_inst.update(s,r);
+	$Circles.add_child(circle_inst);
 
 func drawCross(point : Vector2, color : Color = Color(255,255,255)):
 	var insta_pointNode = pointNode.instantiate();
@@ -91,20 +95,22 @@ func drawLine(point1, point2, color : Color = Color(255,255,255)):
 	line.default_color = color;
 	$Lines.add_child(line);
 
-func isOnEdgeOfCircle(point, S, r) -> CirclePosition:
+func isOnEdgeOfCircle(point : Vector2, S : Vector2, r) -> CirclePosition:
 	#(point.x*point.x) + (point.y*point.y) - 2*(S.x*point.x)-2*(S.y*point.y)
 	var res = pow(point.x - S.x,2) + pow(point.y-S.y,2);
 	print(res, " | ", r, " | ", res - r)
+	r = r*r
+	#print(r, " | ",res)
 	
 	if res == r:
 		drawCross(point, Color(144,50,144));
-		print("edge fund")
+		#print("edge fund")
 		return CirclePosition.ON_EDGE;
 	if (res < r):
 		return CirclePosition.INSIDE	
 	return CirclePosition.OUTSIDE
 
-func makeSuperTriangle():
+func getBigTriangle():
 	var H = 2500;
 	var A = 4000;
 	var margin = 40
@@ -120,7 +126,11 @@ func makeSuperTriangle():
 		A/2,
 		2500+margin
 	)
-	triangles.append([a,b,c]);
+	return[a,b,c];
+	
+func makeSuperTriangle():
+
+	triangles.append(getBigTriangle());
 	#var monitor_center = Vector2(1920/2, 1080/2);
 	#drawLine(monitor_center, a);
 	#drawLine(monitor_center, b);
@@ -133,16 +143,20 @@ func isVectorEqual(v1,v2):
 		return true;
 	return false;
 
+func get_distanced(point1, point2):
+	#print(point1, point2);
+	return sqrt(
+		(( point2.x - point1.x) * (point2.x - point1.x)) + 
+		(( point2.y - point1.y) * (point2.y - point1.y))
+	)
+
 func getTriangleCircumcenterRadius(triangle):
-	var a = triangle[0]
-	var b = triangle[1]
-	var c = triangle[2]
-	
-	var r = (a*b*c) / (
-					(a+b+c)*(b+c-a)*
-					(c+a-b)*(a+b-c)
-				);
-	
+	var a = get_distanced(triangle[0], triangle[1])
+	var b = get_distanced(triangle[1], triangle[2])
+	var c = get_distanced(triangle[2], triangle[0])
+	#print(a ," || ", b," || ",c)
+	var r = (a*b*c) / sqrt((a+b+c)*(b+c-a)*(c+a-b)*(a+b-c));
+	#print("..",r,"..")
 	return r;
 
 
@@ -176,20 +190,90 @@ func getTriangleCircumcenterCenter(triangle):
 
 	var x = (efg[1]*abc[2] - abc[1]*efg[2])/deter;
 	var y = (abc[0]*efg[2] - efg[0]*abc[2])/deter;
-	print("crc: ", x, ":",y);
-	return [x,y];
+	return Vector2(x,y);
+
+func triangleEquality(t1, t2):
+	if (t1[0] == t2[0] && t1[1] == t2[1] && t1[2] == t2[2]):
+		return true;
+	return false;
+
+func fundTriantgleIndex(triangle):
+	var counter = 0;
+	for tri in triangles:
+		if triangleEquality(tri, triangle):
+			return counter;
+		counter += 1;
+		pass;
+
 
 func triangulation():
 	makeSuperTriangle();
 	for i in range(AMOUNT_OF_POINTS):
-		var badTriangles : Array;
+		var badTriangles : Array = [];
 		for triangle in triangles:
 			var S = getTriangleCircumcenterCenter(triangle);
+			drawCross(S, Color(255,0,255))
 			var R = getTriangleCircumcenterRadius(triangle);
-			print("r: ", R)
-			pass;
+			drawCircle(S,R)
+			drawLine(triangle[0], triangle[1], Color(0,255,0));
+			drawLine(triangle[1], triangle[2], Color(0,255,0));
+			drawLine(triangle[0], triangle[2], Color(0,255,0));
+			
+			print("outside: ", isOnEdgeOfCircle(points[i], S, R), ", " ,points[i], ", ", S, ", ", R);
+			if (isOnEdgeOfCircle(points[i], S, R) == CirclePosition.INSIDE):
+				print("inside")
+				badTriangles.append(triangle);
+				break;
+		var polygon = [];
+		print("here ", badTriangles)
+		for triangle in badTriangles:
+			var edges = [false, false, false]; 
+			for t2 in badTriangles:
+				if (triangleEquality(t2, triangle)):
+					continue;
+				if (t2[0] == triangle[0] && t2[1] == triangle[1]):
+					edges[0] = true;
+				if (t2[1] == triangle[1] && t2[2] == triangle[2]):
+					edges[1] = true;
+				if (t2[2] == triangle[2] && t2[0] == triangle[0]):
+					edges[2] = true;
+			if (!edges[0]):
+				polygon.append([triangle[0], triangle[1]]);
+			if (!edges[1]):
+				polygon.append([triangle[1], triangle[2]]);		
+			if (!edges[2]):
+				polygon.append([triangle[2], triangle[0]]);
+		print("poly",polygon)		
+		for triangle in badTriangles:
+			var index = fundTriantgleIndex(triangle)
+			triangles.remove_at(index);
+		
+		for edge in polygon:
+			var newTriangle = [
+				points[i],
+				Vector2(edge[1]),
+				Vector2(edge[0])
+			]
+			triangles.append(newTriangle);
+			
+	var oryginalSuper =  getBigTriangle();
+	removeWithSuper(oryginalSuper);
+	
+	for tri in triangles:
+		drawLine(tri[0], tri[1]);
+		drawLine(tri[1], tri[2]);
+		drawLine(tri[2], tri[0]);
 
-
+func removeWithSuper(oryginalSuper):
+	for tri in triangles:
+		if (tri[0] == oryginalSuper[0] || tri[0] == oryginalSuper[1] || tri[0] == oryginalSuper[2] ||
+			tri[1] == oryginalSuper[0] || tri[1] == oryginalSuper[1] || tri[1] == oryginalSuper[2] ||
+			tri[2] == oryginalSuper[0] || tri[2] == oryginalSuper[1] || tri[2] == oryginalSuper[2] 
+			):
+			var index = fundTriantgleIndex(tri)
+			triangles.remove_at(index);
+			return removeWithSuper(oryginalSuper);
+			
 func drawLines(point):
 	var donePoints : Array = [];
 	for i in range(AMOUNT_OF_POINTS):
